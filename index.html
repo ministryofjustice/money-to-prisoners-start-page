@@ -40,6 +40,31 @@
 <meta name="govuk:need-ids" content="">
 <meta name="govuk:format" content="guide">
 <meta name="govuk:rendering-application" content="frontend">
+<style>
+  /* PROTOTYPE STYLES */
+  .content-block td {
+    padding: 15px;
+    border-color: #979797;
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+  }
+
+  .content-block tr:last-child td {
+    border-bottom: none;
+  }
+
+  .content-block td:last-child {
+    border-right: none;
+  }
+
+  .col-dark {
+    background: #bfc1c3;
+  }
+
+  .col-light {
+    background: #dee0e2;
+  }
+</style>
 </head>
 <body class="mainstream">
     <script type="text/javascript">document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script><div id="skiplink-container">
@@ -70,11 +95,11 @@
   </form>
 
         </div>
-        
+
       </div>
     </header><!--end header--><div id="user-satisfaction-survey-container" data-survey-url="https://www.surveymonkey.com/s/6HZFSVC"></div>
 
-    
+
 
 
     <div id="global-header-bar"></div>
@@ -90,19 +115,19 @@
 
   <div id="wrapper" class="guide guide">
       <div class="grid-row">
-        
+
 <main id="content" role="main" class="multi-page"><header class="page-header"><div>
       <h1>
-        
+
         Staying in touch with someone in prison
       </h1>
     </div>
   </header><div class="article-container group">
-    
+
 
     <div class="content-block">
       <div class="inner">
-        
+
   <aside><div class="inner">
     <nav role="navigation" class="page-navigation" aria-label="parts to this guide"><ol>
 <li>
@@ -133,20 +158,105 @@
               </li>
         </ol></nav>
 </div>
-</aside><header><h1>4. Sending money</h1>
-    </header><p>You can send money to a prisoner. Cheques or postal orders (payable to ‘<abbr title="National Offender Management Service">NOMS</abbr> Agency’) are preferred, but you can also send cash. </p>
+</aside>
 
-<p>You should address your envelope to the governor of the prison and your letter should include:</p>
+
+
+
+
+
+
+
+<!-- PROTOTYPE CONTENT -->
+
+<header><h1>4. Sending money</h1></header>
+
+<p>You can send money to a prisoner by: </p>
 
 <ul>
-<li>your name and address</li>
-  <li>the prisoner’s name and prison number</li>
+  <li>making a payment (online or in person) using your bank or building society</li>
+  <li>writing a cheque (payable to ‘NOMS Agency’) or getting a postal order and sending it to the prison.</li>
+  <li>sending cash (though this is not as secure as other ways to send money) </li>
 </ul>
-<p>The money is then paid into their prison account - a basic cash account they can use to send and receive money.</p>
+
+
+<h2>How to make a payment (online, on the phone, or in person) </h2>
+
+<p>You’ll need to use your own bank or building society to make a payment.</p>
+<p>If you have any questions about how to make a payment then you’ll need to contact your bank or building society. </p>
+
+
+<h2>Information you’ll need</h2>
+
+<table>
+  <colgroup>
+    <col class="col-dark">
+    <col class="col-light">
+  </colgroup>
+  <tbody>
+    <tr>
+      <td>Name of the person you’re sending to</td>
+      <td>Prisoner’s name</td>
+      <td>This information is for your records</td>
+    </tr>
+    <tr>
+      <td>Account number to pay the money to</td>
+      <td>11112222</td>
+      <td>This is the account number used by the prison service</td>
+    </tr>
+    <tr>
+      <td>Sort code for the account you’re paying in to</td>
+      <td>45-50-55</td>
+      <td>This is the sort code used by the prison service</td>
+    </tr>
+    <tr>
+      <td>Prisoner number and date of birth to be used as payment reference </td>
+      <td>
+        For example if the prisoner’s number is z1234ef and their date of birth is 19 October 1980 you’d write:<br>
+        <br>
+        <samp>z1234ef 19oct1980</samp>
+      </td>
+      <td>
+        The prisoner should give you their number.<br>
+        <br>
+        <strong>It’s important to get these details right so the money goes to the correct person</strong>
+      </td>
+    </tr>
+    <tr>
+      <td>For international payments only </td>
+      <td>Swift / BIC code: NOMSGB22</td>
+      <td>If you’re sending money from outside the UK, you’ll need use these details. BIC stands for ‘Bank Identifier Code’</td>
+    </tr>
+  </tbody>
+</table>
+
+
+<p><strong>If you don’t know the prisoner number</strong> use the <a href="https://www.gov.uk/find-prisoner">find a prisoner</a> service. </p>
+
+<p>The money should arrive in the prisoner’s account within XX working days. </p>
+
+<h2>Sending money by cheque or postal order or cash</h2>
+
+<p>Make sure the cheque is written out to ‘NOMS Agency’. Send cheques, postal orders and cash in an envelope addressed to the governor of the prison. Your letter should include: </p>
+
+<ul>
+  <li>your name and address</li>
+  <li>the prisoner’s name and prison number  The money is then paid into their prison account - a basic cash account they can use to send and receive money.</li>
+</ul>
+
 
 <h2>Privately-run prisons</h2>
 
 <p><a rel="external" href="http://www.justice.gov.uk/global/contacts/noms/prison-finder/index.htm">Contact the prison</a> directly if you want to send money to someone in a privately-run prison.</p>
+
+
+<!-- PROTOTYPE CONTENT END -->
+
+
+
+
+
+
 
 
 
@@ -175,30 +285,30 @@
   <div class="related-container">
 
     <div class="related" id="related">
-      
-        
+
+
         <div class="inner group related-subsection">
-          
+
           <h2 id="parent-subsection">Prisons and probation</h2>
-          
+
 
           <nav role="navigation" aria-labelledby="parent-subsection"><ul>
 <li>
                   <a href="/support-for-families-friends-of-prisoners">Support for families and friends of prisoners </a>
                 </li>
-              
+
                 <li>
                   <a href="/life-in-prison">Prison life</a>
                 </li>
-              
-              
+
+
                 <li class="related-topic"><a href="/browse/justice/prisons-probation" title="More in Prisons and probation">More <span class="visuallyhidden">in Prisons and probation</span></a></li>
-              
+
             </ul></nav>
 </div>
-      
 
-      
+
+
 
       <div class="inner group">
         <a class="return-to-top" href="#content">Return to top ↑</a>
@@ -209,7 +319,7 @@
 <!-- end related -->
 
       </div>
-      
+
     <div class="report-a-problem-container">
   <div class="report-a-problem-inner">
     <div class="report-a-problem-content">
