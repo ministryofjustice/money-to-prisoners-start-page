@@ -46,16 +46,22 @@
     width: 100%;
   }
 
+  #wrapper > .grid-row {
+    position: relative;
+  }
+
   .PROTOTYPE-inner,
   .page-header {
     width: 66.6%;
   }
 
-  .related-container {
-    position: absolute;
-    top: 113px;
-    left: 707px;
-    width: 330px;
+  @media (min-width: 950px){
+    .related-container {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 330px;
+    }
   }
 
   .content-block td {
