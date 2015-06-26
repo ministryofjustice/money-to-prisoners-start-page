@@ -41,11 +41,11 @@
 <meta name="govuk:format" content="guide">
 <meta name="govuk:rendering-application" content="frontend">
 <style>
-  @media (min-width: 769px) {
+  /*@media (min-width: 769px) {
     .content-block table {
       width: 700px;
     }
-  }
+  }*/
 
   .content-block td,
   .content-block th {
@@ -53,6 +53,11 @@
     border-color: #979797;
     border-style: solid;
     border-width: 0 1px 1px 0;
+  }
+
+  .content-block td:first-child,
+  .content-block th:first-child {
+    width: 100px;
   }
 
   .content-block tr:first-child td,
