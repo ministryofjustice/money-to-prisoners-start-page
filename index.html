@@ -47,19 +47,22 @@
     }
   }
 
-  .content-block td {
+  .content-block td,
+  .content-block th {
     padding: 15px;
     border-color: #979797;
     border-style: solid;
     border-width: 0 1px 1px 0;
   }
 
-  .content-block tr:last-child td {
-    border-bottom: none;
+  .content-block tr:first-child td,
+  .content-block td:first-child,
+  .content-block th {
+    border-width: 1px;
   }
 
-  .content-block td:last-child {
-    border-right: none;
+  .content-block th {
+    font-weight: normal;
   }
 
   .col-dark {
@@ -67,6 +70,25 @@
   }
 
   .col-light {
+    background: #dee0e2;
+  }
+
+  .highlight {
+    background: rgba(43, 140, 196, 0.25);
+  }
+
+  dd {
+    margin-left: 0;
+  }
+
+  dd samp {
+    padding: 5px 20px;
+    font-size: 24px;
+    font-weight: bold;
+    background: #dee0e2;
+  }
+
+  th {
     background: #dee0e2;
   }
 </style>
@@ -180,64 +202,93 @@
 
 <ul>
   <li>making a payment (online or in person) using your bank or building society</li>
-  <li>writing a cheque (payable to ‘NOMS Agency’) or getting a postal order and sending it to the prison.</li>
+  <li>writing a cheque or getting a postal order (payable to ‘NOMS Agency’) and sending it to the prison</li>
   <li>sending cash (though this is not as secure as other ways to send money) </li>
 </ul>
 
 
 <h2>How to make a payment online</h2>
+<p>You need to use the correct payment reference so the money goes to the right prisoner. This is important as all public prisons in England and Wales use the same bank account to receive money sent to prisoners.</p>
 
-<p>Log in to your bank or building society and set up a new payee with this information:</p>
+<p>For the payment reference, use the:</p>
 
+<ul>
+  <li>Prisoner number</li>
+  <li>Prisoner date of birth</li>
+</ul>
 
+<h3>How to write the payment reference</h3>
 
-<table class="oversize">
-  <colgroup>
-    <col class="col-dark">
-    <col class="col-light">
-  </colgroup>
+<table>
+  <cospan>
+    <col></col>
+    <col></col>
+    <col class="highlight"></col>
+  </cospan>
+
+  <thead>
+    <tr>
+      <th>If the prisoner number is:</th>
+      <th>And their date of birth is:</th>
+      <th>You'd write:</th>
+      <th></th>
+    </tr>
+  </thead>
+
   <tbody>
-    <!-- <tr>
-      <td>Payee</td>
-      <td>Prisoner’s name</td>
-      <td>This information is for your records</td>
-    </tr> -->
     <tr>
-      <td>Account number</td>
-      <td>48301337</td>
-      <td>This is the account number used by the prison service</td>
+      <td>A1234JG</td>
+      <td>10 January 1959</td>
+      <td>A1234JG 10/01/1959</td>
+      <td><img src="tick.png" alt=""></td>
     </tr>
+
     <tr>
-      <td>Sort code</td>
-      <td>45-50-55</td>
-      <td>This is the sort code used by the prison service</td>
+      <td>A1234BB</td>
+      <td>3 November 1964</td>
+      <td>a1234bb 03/11/1964</td>
+      <td><img src="tick.png" alt=""></td>
     </tr>
+
     <tr>
-      <td>Reference</td>
-      <td>
-        Use the prisoner number and date of birth. <br>
-        <br>
-        <strong>For example</strong> if the prisoner’s number is a1234ef and their date of birth is 19 October 1980 you must write: <samp>a1234ef 19oct1980</samp>
-      </td>
-      <td>
-        <strong>It’s important to get these details right so the money goes to the correct person</strong>
-      </td>
-    </tr>
-    <tr>
-      <td>Swift / BIC code</td>
-      <td>NOMSGB22</td>
-      <td>If you’re sending money from outside the UK, you’ll need use these details. BIC stands for ‘Bank Identifier Code’</td>
+      <td>A1234EF</td>
+      <td>19 October 1982</td>
+      <td>A1234EF 19October82</td>
+      <td><img src="cross.png" alt=""></td>
     </tr>
   </tbody>
 </table>
 
 
-<p><strong>If you don’t know the prisoner number</strong> contact the prisoner or use the <a href="https://www.gov.uk/find-prisoner">find a prisoner</a> service.</p>
+<p>If you don’t know the prisoner number, the prisoner will be able to tell you what it is.</p>
 
-<p>The money should arrive in the prisoner’s account within 1 working day. </p>
+<p>Make a payment from your own bank account to the prison service bank account.</p>
 
-<p>If you have any questions about how to make an online payment then you’ll need to contact your bank or building society. <br>
-You can also make a payment in person or on the phone. </p>
+<dl>
+  <dt>Prison service account number</dt>
+  <dd><samp>48301337</samp></dd>
+  <dt>Prison service sort code</dt>
+  <dd><samp>45-50-55</samp></dd>
+</dl>
+
+<p>The money should arrive in the prisoner’s account in 1 working day.</p>
+
+<p>If you have any questions about how to make a payment you should contact your bank or building society.</p>
+
+
+
+
+<h2>Sending money from outside the UK </h2>
+
+<p>You can use all the same details to make a payment outside the UK, plus these details:</p>
+
+<dl>
+  <dt>Swift / BIC code</dt>
+  <dd><samp>NOMSGB22</samp></dd>
+</dl>
+
+
+
 
 <h2>Sending money by cheque or postal order or cash</h2>
 
@@ -306,6 +357,8 @@ You can also make a payment in person or on the phone. </p>
                   <a href="https://www.gov.uk/life-in-prison">Prison life</a>
                 </li>
 
+
+<li><a href="https://www.gov.uk/find-prisoner">Find a prisoner</a></li>
 
                 <li class="related-topic"><a href="https://www.gov.uk/browse/justice/prisons-probation" title="More in Prisons and probation">More <span class="visuallyhidden">in Prisons and probation</span></a></li>
 
