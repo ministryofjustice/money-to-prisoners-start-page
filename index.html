@@ -47,23 +47,29 @@
     }
   }*/
 
+  .content-block h3 + table {
+    margin-top: 33px;
+    width: 770px;
+  }
+
   .content-block td,
   .content-block th {
-    padding: 15px;
-    border-color: #979797;
-    border-style: solid;
-    border-width: 0 1px 1px 0;
+    padding: 0;
+    border: none;
   }
 
-  .content-block td:first-child,
-  .content-block th:first-child {
-    width: 120px;
+  .content-block td {
+    padding: .7em 0;
   }
 
-  .content-block tr:first-child td,
-  .content-block td:first-child,
-  .content-block th {
-    border-width: 1px;
+  .content-block td.symbol {
+    padding: .85em 1.1em 0;
+  }
+
+  .content-block td:last-child strong {
+    font-weight: bold;
+    white-space: nowrap;
+    background-color: rgba(40,161,151,0.25);
   }
 
   .content-block th {
@@ -86,15 +92,21 @@
     margin-left: 0;
   }
 
-  dd samp {
+  dd samp,
+  td strong {
     padding: 5px 20px;
     font-size: 24px;
     font-weight: bold;
     background: #dee0e2;
   }
 
-  th {
-    background: #dee0e2;
+  td strong {
+    display: inline-block;
+    padding: 11px 20px;
+    font-size: 19px;
+    font-weight: normal;
+    text-align: center;
+    min-width: 150px;
   }
 </style>
 </head>
@@ -230,25 +242,23 @@
 <h3>How to write the payment reference</h3>
 
 <table>
-  <colgroup>
-    <col></col>
-    <col></col>
-    <col class="highlight"></col>
-  </colgroup>
-
   <thead>
     <tr>
       <th>If the prisoner number is:</th>
+      <th></th>
       <th>And their date of birth is:</th>
+      <th></th>
       <th>You'd write:</th>
     </tr>
   </thead>
 
   <tbody>
     <tr>
-      <td>A1234JG</td>
-      <td>10 January 1959</td>
-      <td>A1234JG 10/01/1959</td>
+      <td><strong>A1234JG</strong></td>
+      <td class="symbol"><img src="plus.png" alt=""></td>
+      <td><strong>10 January 1959</strong></td>
+      <td class="symbol"><img src="arrow.png" alt=""></td>
+      <td><strong>A1234JG 10/01/1959</strong></td>
     </tr>
   </tbody>
 </table>
