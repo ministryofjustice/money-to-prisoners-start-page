@@ -41,11 +41,76 @@
 <meta name="govuk:format" content="guide">
 <meta name="govuk:rendering-application" content="frontend">
 <style>
-  /*@media (min-width: 769px) {
-    .content-block table {
-      width: 700px;
+
+  ul.reference,
+  ul.reference li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  ul.reference strong {
+    display: block;
+    padding: 11px 20px;
+    font-size: 19px;
+    font-weight: normal;
+    text-align: center;
+    background: #dee0e2;
+  }
+
+  ul.reference p {
+    margin-bottom: 6px;
+    font-size: 16px;
+  }
+
+  ul.reference li:nth-child(even) {
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  ul.reference li:last-child strong {
+    font-weight: bold;
+    white-space: nowrap;
+    background-color: rgba(40,161,151,0.25);
+  }
+
+  .reference i {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: no-repeat;
+  }
+
+  i.arrow { background-image: url(arrow-down.png); }
+  i.plus  { background-image: url(plus.png); }
+
+  @media (min-width: 769px) {
+
+    ul.reference {
+      display: table-row;
     }
-  }*/
+
+    ul.reference li {
+      display: table-cell;
+      padding: 13px 0;
+    }
+
+    ul.reference strong {
+      display: inline-block;
+      min-width: 150px;
+    }
+
+    ul.reference li:nth-child(even) {
+      margin: 0;
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-bottom: 9px;
+      vertical-align: bottom;
+    }
+
+    i.arrow { background-image: url(arrow.png); }
+
+  }
 
   .content-block h3 + table {
     margin-top: 33px;
@@ -221,14 +286,12 @@
 <header><h1>4. Sending money to a prisoner</h1></header>
 
 
-<h2>Use your bank to make a payment</h2>
+<p>You can use your bank account to send money to a prisoner. You'll need:</p>
 
-<p>You need:</p>
-
-<ul>
+<ol>
   <li>a payment reference to identify the prisoner</li>
   <li>the prison service bank account and sort code</li>
-</ul>
+</ol>
 
 <h3>Payment reference</h3>
 
@@ -243,28 +306,26 @@
 
 <h3>An example of how to write the payment reference</h3>
 
-<table>
-  <thead>
-    <tr>
-      <th>If the prisoner number is:</th>
-      <th></th>
-      <th>And their date of birth is:</th>
-      <th></th>
-      <th>You'd write:</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <tr>
-      <td><strong>A1234JG</strong></td>
-      <td class="symbol"><img src="plus.png" alt=""></td>
-      <td><strong>10 January 1959</strong></td>
-      <td class="symbol"><img src="arrow.png" alt=""></td>
-      <td><strong>A1234JG 10/01/1959</strong></td>
-    </tr>
-  </tbody>
-</table>
-
+<ul class="reference">
+  <li>
+    <p>If the prisoner number is:</p>
+    <strong>A1234JG</strong>
+  </li>
+  <li>
+    <i class="plus"></i>
+  </li>
+  <li>
+    <p>And their date of birth is:</p>
+    <strong>10 January 1959</strong>
+  </li>
+  <li>
+    <i class="arrow"></i>
+  </li>
+  <li>
+    <p>You'd write:</p>
+    <strong>A1234JG 10/01/1959</strong>
+  </li>
+</ul>
 
 
 <h3>Bank details</h3>
