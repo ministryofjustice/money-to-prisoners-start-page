@@ -1,0 +1,140 @@
+h3.alt {
+  font-style: italic;
+}
+
+ul.reference,
+ul.reference li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+ul.reference strong {
+  display: block;
+  padding: 11px 20px;
+  font-size: 19px;
+  font-weight: normal;
+  text-align: center;
+  background: #dee0e2;
+}
+
+ul.reference p {
+  margin-bottom: 6px;
+  font-size: 16px;
+}
+
+ul.reference li:nth-child(even) {
+  margin-top: 10px;
+  text-align: center;
+}
+
+ul.reference li:last-child strong {
+  font-weight: bold;
+  white-space: nowrap;
+  background-color: rgba(40,161,151,0.25);
+}
+
+.reference i {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background: no-repeat;
+}
+
+i.arrow { background-image: url(../images/arrow-down.png); }
+i.plus  { background-image: url(../images/plus.png); }
+
+@media (min-width: 769px) {
+
+  ul.reference {
+    display: table-row;
+  }
+
+  ul.reference li {
+    display: table-cell;
+    padding: 13px 0;
+  }
+
+  ul.reference strong {
+    display: inline-block;
+    min-width: 150px;
+  }
+
+  ul.reference li:nth-child(even) {
+    margin: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 9px;
+    vertical-align: bottom;
+  }
+
+  i.arrow { background-image: url(../images/arrow.png); }
+
+}
+
+.content-block h3 + table {
+  margin-top: 33px;
+  width: 770px;
+}
+
+.content-block td,
+.content-block th {
+  padding: 0;
+  border: none;
+}
+
+.content-block td {
+  padding: .7em 0;
+}
+
+.content-block td.symbol {
+  padding: .85em 1.1em 0;
+}
+
+.content-block td:last-child strong {
+  font-weight: bold;
+  white-space: nowrap;
+  background-color: rgba(40,161,151,0.25);
+}
+
+.content-block th {
+  font-weight: normal;
+}
+
+.col-dark {
+  background: #bfc1c3;
+}
+
+.col-light {
+  background: #dee0e2;
+}
+
+.highlight {
+  background: rgba(43, 140, 196, 0.25);
+}
+
+dd {
+  margin-left: 0;
+}
+
+dd samp,
+td strong {
+  padding: 5px 20px;
+  font-size: 24px;
+  font-weight: bold;
+  background: #dee0e2;
+}
+
+dd samp {
+  background: #fff;
+  border: grey solid 1px;
+}
+
+td strong {
+  display: inline-block;
+  padding: 11px 20px;
+  font-size: 19px;
+  font-weight: normal;
+  text-align: center;
+  min-width: 150px;
+}
