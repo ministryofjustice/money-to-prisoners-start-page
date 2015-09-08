@@ -1,8 +1,5 @@
-# Deprecated
+# Sending Money to a Prisoner
 
-This repo is now replaced with the [GitHub Prototyper](https://github.com/ministryofjustice/github-prototyper/tree/gh-pages/staying-in-touch-with-someone-in-prison).
+This contains the GOV.UK information page content for the Sending Money to a Prisoner pilot.
 
-### Sending money to prisoners GOV.UK info page prototype
-
-This is a prototype of [page 4](https://www.gov.uk/staying-in-touch-with-someone-in-prison/sending-money) of 'Staying in touch with someone in prison' for when bank transfers are enabled as part of the 'Send money to a prisoner' project.
-
+This content is a variation of [page 4](https://www.gov.uk/staying-in-touch-with-someone-in-prison/sending-money) of 'Staying in touch with someone in prison' on GOV.UK for payments via bank transfer for pilot prisons. 
