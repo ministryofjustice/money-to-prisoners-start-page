@@ -1,3 +1,7 @@
+#wrapper {
+  padding-bottom: 40px;
+}
+
 h3.alt {
   font-style: italic;
 }
