@@ -27,15 +27,15 @@ ul.reference p {
   font-size: 16px;
 }
 
-ul.reference li:nth-child(even) {
+ul.reference li.icon {
   margin-top: 10px;
   text-align: center;
 }
 
-ul.reference li:last-child strong {
+ul.reference li.result strong {
   font-weight: bold;
   white-space: nowrap;
-  background-color: rgba(40,161,151,0.25);
+  background-color: #CAE8E5;
 }
 
 .reference i {
@@ -64,7 +64,7 @@ i.plus  { background-image: url(../images/plus.png); }
     min-width: 150px;
   }
 
-  ul.reference li:nth-child(even) {
+  ul.reference li.icon {
     margin: 0;
     padding-left: 20px;
     padding-right: 20px;
@@ -221,3 +221,17 @@ td strong {
     vertical-align: baseline;
   }
 }
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+.clearfix { display: inline-block; }
+/* start commented backslash hack \
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+*/
