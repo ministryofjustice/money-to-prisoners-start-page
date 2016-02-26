@@ -182,6 +182,7 @@ td strong {
 }
 
 .phase-banner .phase-tag {
+  float: left;
   display: -moz-inline-stack;
   display: inline-block;
   vertical-align: top;
