@@ -2,6 +2,10 @@
   padding-bottom: 40px;
 }
 
+header.page-header div {
+  margin-bottom: 13px;
+}
+
 h3.alt {
   font-style: italic;
 }
