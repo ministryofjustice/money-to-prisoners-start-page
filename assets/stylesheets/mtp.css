@@ -240,3 +240,9 @@ td strong {
 * html .clearfix { height: 1%; }
 .clearfix { display: block; }
 */
+
+p.survey {
+  margin-bottom: 1.8em;
+  border: 1px solid #ccced0;
+  padding: 1em .8em 1em .8em;
+}
