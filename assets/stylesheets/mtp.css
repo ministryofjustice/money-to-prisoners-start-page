@@ -246,3 +246,12 @@ p.survey {
   border: 1px solid #ccced0;
   padding: 1em .8em 1em .8em;
 }
+
+ .get-started .button {
+    padding: 0.60em 1.7em 0.45em 0.67em;
+    background-image: url(https://assets.digital.cabinet-office.gov.uk/static/icon-pointer-73fdb5b0e577f60fabed035f3b3f52ef73742431aef9e01ac01bdf40efc1a266.png);
+    background-position: 100% 50%;
+    background-repeat: no-repeat;
+    margin-bottom: 1.5em;
+    margin-top: 1em;
+  }
