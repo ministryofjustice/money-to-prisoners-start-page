@@ -255,3 +255,7 @@ p.survey {
     margin-bottom: 1.5em;
     margin-top: 1em;
   }
+
+.important p, .important ul li {
+  font-weight: bold;
+}
