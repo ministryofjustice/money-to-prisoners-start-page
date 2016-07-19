@@ -204,6 +204,10 @@ td strong {
   background-color: #d53880;
 }
 
+.phase-banner .phase-tag.phase-tag-beta {
+  background-color: #f47738;
+}
+
 @media (min-width: 641px) {
   .phase-banner .phase-tag {
     vertical-align: baseline;
