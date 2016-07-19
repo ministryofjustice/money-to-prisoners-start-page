@@ -201,6 +201,10 @@ td strong {
   letter-spacing: 1px;
   text-decoration: none;
   color: #fff;
+  background-color: #d53880;
+}
+
+.phase-banner .phase-tag.phase-tag-beta {
   background-color: #f47738;
 }
 
