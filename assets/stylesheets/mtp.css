@@ -80,6 +80,14 @@ i.plus  { background-image: url(../images/plus.png); }
 
 }
 
+.inner > p {
+  padding-top: 15px;
+}
+
+.content-block {
+  width: 85%;
+}
+
 .content-block h3 + table {
   margin-top: 33px;
   width: 770px;
