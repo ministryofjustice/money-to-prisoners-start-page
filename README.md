@@ -1,5 +1,5 @@
-# Sending Money to a Prisoner
+# Send money to a prisoner
 
-This contains the GOV.UK information page content for the Sending Money to a Prisoner pilot.
+This repository contains the user research content for the ‘Send money to a prisoner’ service.
 
-This content is a variation of [page 4](https://www.gov.uk/staying-in-touch-with-someone-in-prison/sending-money) of 'Staying in touch with someone in prison' on GOV.UK for payments via bank transfer for pilot prisons. 
+The live content can be found at [gov.uk/send-prisoner-money](https://www.gov.uk/send-prisoner-money)
