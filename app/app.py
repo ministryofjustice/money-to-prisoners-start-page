@@ -1,3 +1,4 @@
+import json
 import os
 
 from flask import Flask, Response, redirect, render_template
@@ -53,5 +54,31 @@ def robots():
     return Response(
         'User-agent: *\n'
         'Disallow: /',
-        content_type='text/plain'
+        content_type='text/plain',
     )
+
+
+@app.route('/ping.json')
+def ping():
+    return no_cache(Response(
+        json.dumps(dict(
+            build_date_key=APP_BUILD_DATE,
+            commit_id_key=APP_GIT_COMMIT,
+            version_number_key=APP_BUILD_TAG,
+        )),
+        content_type='application/json',
+    ))
+
+
+@app.route('/healthcheck.json')
+def healthcheck():
+    return no_cache(Response(
+        '{"*": {"status": true}}',
+        content_type='application/json',
+    ))
+
+
+def no_cache(response):
+    response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+    response.headers['Pragma'] = 'no-cache'
+    return response
