@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+    <title>{% block title %}{% endblock %}</title>
+
+    <!--[if gt IE 8]><!--><link href="{{ url_for('static', filename='govuk-template-1875638511d35be82a4aeaa8d591b5f57b9d3819604feaf89b65f2812cf794ea.css') }}" media="screen" rel="stylesheet">
+<!--<![endif]-->
+    <!--[if IE 6]><link href="https://assets.publishing.service.gov.uk/static/govuk-template-ie6-b4e746f94e865a9ee488a3ec929fcfeedb2267bf2fac1aeac9215bfc3d3b4a6a.css" media="screen" rel="stylesheet" /><![endif]-->
+    <!--[if IE 7]><link href="https://assets.publishing.service.gov.uk/static/govuk-template-ie7-94d0308e53aaef4aedad5d6dc36b7a67a1c63e2a3da5b63f3a570be958810e12.css" media="screen" rel="stylesheet" /><![endif]-->
+    <!--[if IE 8]><link href="https://assets.publishing.service.gov.uk/static/govuk-template-ie8-58ada30e1ac2d11845dee1121f95a666b999e5248bc456940063cc530b3f5344.css" media="screen" rel="stylesheet" /><![endif]-->
+    <link href="{{ url_for('static', filename='govuk-template-print-1076519521c2fffbbf75ab3b0d3b32ee2d96ac7e9778f1cdfac1771eefd1a1c0.css') }}" media="print" rel="stylesheet">
+
+    <!--[if IE 8]><link href="https://assets.publishing.service.gov.uk/static/fonts-ie8-f5e3c18a96ecb0f37246556a27330202d6e18feffa05a3b67825024609629ac8.css" media="all" rel="stylesheet" /><![endif]-->
+    <!--[if gte IE 9]><!--><link href="{{ url_for('static', filename='fonts-5ff8c53913434afd0072a480d7cfca67cace4c8d03f6ef96b78a4455728ce745.css') }}" media="all" rel="stylesheet">
+<!--<![endif]-->
+    <!--[if lt IE 9]><script src="https://assets.publishing.service.gov.uk/static/ie-75db9d4df4993de5335d6e49013362743a78107245bcf6543337a0ecc0a95b41.js"></script><![endif]-->
+
+    <link rel="shortcut icon" href="https://assets.publishing.service.gov.uk/static/favicon-8d811b8c3badbc0b0e2f6e25d3660a96cc0cca7993e6f32e98785f205fc40907.ico" type="image/x-icon">
+    <link rel="mask-icon" href="https://assets.publishing.service.gov.uk/static/gov.uk_logotype_crown-a0097118fe9226ce1ffde1ccfeb86c61be3607915046196c99f68b9548485ad3.svg" color="#0b0c0c">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://assets.publishing.service.gov.uk/static/apple-touch-icon-152x152-55dd2af7a53abb7dd14ba6a3c6c3fc786c57a074ba809f6dd767e186955a87e1.png">
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://assets.publishing.service.gov.uk/static/apple-touch-icon-120x120-92580784afc35143f96b8cf5614e221427fdea444aeb13d912c879e884af7336.png">
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="https://assets.publishing.service.gov.uk/static/apple-touch-icon-76x76-9b193f39cde53b92ba555efed856bcd103d6d1dc650919eb9f29dbe5f442cfb0.png">
+    <link rel="apple-touch-icon-precomposed" href="https://assets.publishing.service.gov.uk/static/apple-touch-icon-60x60-0af0a7cf886701647210f13b661e607b7223bc3221b6d275718a89af79b3e7b9.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:image" content="https://assets.publishing.service.gov.uk/static/opengraph-image-a1f7d89ffd0782738b1aeb0da37842d8bd0addbd724b8e58c3edbc7287cc11de.png">
+
+      <!--[if gt IE 8]><!--><link rel="stylesheet" media="screen" href="{{ url_for('static', filename='static-fac5a6091ec2c08683d7e7537c34a456e3545b4e7207f2742f4e917f45e0ebfa.css') }}">
+<!--<![endif]-->
+<!--[if IE 6]><link rel="stylesheet" media="screen" href="https://assets.publishing.service.gov.uk/static/static-ie6-8f18e6495eb1dc2d1f897738d41eaf8b9f1203a558510b8287b75e02671702a8.css" /><script>var ieVersion = 6;</script><![endif]-->
+<!--[if IE 7]><link rel="stylesheet" media="screen" href="https://assets.publishing.service.gov.uk/static/static-ie7-14c79a5605c088bc1ef5b28fc7f331fef5a7f9ec7a8c3a7c560a7bc8335caca3.css" /><script>var ieVersion = 7;</script><![endif]-->
+<!--[if IE 8]><link rel="stylesheet" media="screen" href="https://assets.publishing.service.gov.uk/static/static-ie8-8c8b192b702bc15fa78e4aa3c7b88b73997495b5ee5c6fb6246b846a6b638c29.css" /><script>var ieVersion = 8;</script><![endif]-->
+
+<link rel="stylesheet" media="print" href="{{ url_for('static', filename='static-print-eda4da06b5f49546c74c228ba38eae74091c967533f98de1a5073726c38748d6.css') }}">
+
+
+  <link title="Search" rel="search" type="application/opensearchdescription+xml" href="https://www.gov.uk/search/opensearch.xml">
+<!--[if gt IE 8]><!--><link rel="stylesheet" media="screen" href="{{ url_for('static', filename='application-3840e0dfceb7cac3ac4379c16644dc1553110a1708fa92dfaaf9208e2dc5d92f.css') }}">
+<!--<![endif]-->
+<!--[if IE 6]><link rel="stylesheet" media="screen" href="https://assets.publishing.service.gov.uk/frontend/application-ie6-31d7ff7b7d858a87a93669006c1b635f4db85057c884b485dcdc66af326a8bc2.css" /><![endif]--><!--[if IE 7]><link rel="stylesheet" media="screen" href="https://assets.publishing.service.gov.uk/frontend/application-ie7-84d7383ee778ffb17884211a85d976c2ce38c82fa57ef26ea401d376665a9540.css" /><![endif]--><!--[if IE 8]><link rel="stylesheet" media="screen" href="https://assets.publishing.service.gov.uk/frontend/application-ie8-a7ceeb3e961a279180cabae688841a8a7b666461a1aaba80f679a72b7bbed5ea.css" /><![endif]--><meta name="govuk:rendering-application" content="frontend">
+</head>
+
+  <body class="mainstream js-enabled">
+    <script>document.body.className = ((document.body.className) ? document.body.className + ' js-enabled' : 'js-enabled');</script>
+
+
+
+    <div id="skiplink-container">
+      <div>
+        <a href="#content" class="skiplink">Skip to main content</a>
+      </div>
+    </div>
+
+    <div id="global-cookie-message">
+        <p>GOV.UK uses cookies to make the site simpler. <a href="https://www.gov.uk/help/cookies">Find out more about cookies</a></p>
+    </div>
+
+    <header role="banner" id="global-header" class="">
+      <div class="header-wrapper">
+        <div class="header-global">
+          <div class="header-logo">
+            <a href="https://www.gov.uk/" title="Go to the GOV.UK homepage" id="logo" class="content">
+              <img src="{{ url_for('static', filename='gov.uk_logotype_crown_invert_trans-203e1db49d3eff430d7dc450ce723c1002542fe1d2bce661b6d8571f14c1043c.png') }}" width="36" height="32" alt=""> GOV.UK
+            </a>
+          </div>
+            <a href="#search" class="search-toggle js-header-toggle">Search</a>
+
+  <form id="search" class="site-search" action="https://www.gov.uk/search" method="get" role="search">
+    <div class="content">
+      <label for="site-search-text">Search</label>
+      <input type="search" name="q" id="site-search-text" title="Search" class="js-search-focus">
+      <input class="submit" type="submit" value="Search">
+    </div>
+  </form>
+
+        </div>
+
+      </div>
+    </header>
+
+      <div id="user-satisfaction-survey-container"></div>
+
+
+    <div id="global-header-bar"></div>
+
+        <div class="header-context"><!-- Deliberately empty. This will prevent Slimmer from adding the artefact-breadcrumb. --></div>
+
+
+{% block content %}{% endblock %}
+
+
+    <footer class="group js-footer" id="footer" role="contentinfo">
+
+      <div class="footer-wrapper">
+        <div class="footer-meta">
+          <div class="footer-meta-inner">
+            <div class="open-government-licence">
+              <p class="logo"><a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence</a></p>
+                <p>All content is available under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated</p>
+            </div>
+          </div>
+
+          <div class="copyright">
+            <a href="http://www.nationalarchives.gov.uk/information-management/re-using-public-sector-information/copyright-and-re-use/crown-copyright/">© Crown copyright</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div id="global-app-error" class="app-error hidden"></div>
+
+    <script src="{{ url_for('static', filename='govuk-template-c4f303154d2a238bdda4d5cf1ebd8d4487822e4cbc3e4c83e743da869443ce72.js') }}"></script>
+
+      <script src="{{ url_for('static', filename='jquery-1.11.3-c40d54aaf7339842749de8469b5b8915b886b5e67cd218d48a780cc2f2471853.js') }}"></script>
+<script src="{{ url_for('static', filename='application-5200312efc7832bc2d06bb3f5c8d1a2076728b75c3b390028d0240fad1a74bb7.js') }}"></script>
+
+
+
+    <script>if (typeof window.GOVUK === 'undefined') document.body.className = document.body.className.replace('js-enabled', '');</script>
+  <script src="{{ url_for('static', filename='frontend-f9972d46d17559a35b17f595445bc50aa257860c198c500a242d2120278a0a31.js') }}"></script>
+
+
+</body></html>
