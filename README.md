@@ -11,7 +11,7 @@ Development
 Run locally:
 
 ```bash
-FLASK_APP=app/app.py flask run
+FLASK_ENV=development FLASK_APP=app/app.py flask run
 ```
 
 Run locally in Docker:

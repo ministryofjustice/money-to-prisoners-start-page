@@ -1,52 +1,46 @@
-import json
-import os
+from flask import Flask, Response, redirect, render_template, request
+from prometheus_client import exposition
+from prometheus_client.metrics_core import InfoMetricFamily
+from prometheus_client.registry import CollectorRegistry
 
-from flask import Flask, Response, redirect, render_template
+import settings
 
-APP = 'start-page'
-ENVIRONMENT = os.environ.get('ENV', 'local')
 
-APP_GIT_COMMIT = os.environ.get('APP_GIT_COMMIT')
-APP_GIT_COMMIT_SHORT = (APP_GIT_COMMIT or 'unknown')[:7]
-APP_BUILD_TAG = os.environ.get('APP_BUILD_TAG')
-APP_BUILD_DATE = os.environ.get('APP_BUILD_DATE')
+class AppMetricCollector:
+    def __init__(self):
+        self.info = InfoMetricFamily('mtp_app', 'Details of a money-to-prisoners app', value=dict(
+            app=settings.APP,
+            environment=settings.ENVIRONMENT,
+            git_commit=settings.APP_GIT_COMMIT,
+            build_tag=settings.APP_BUILD_TAG,
+            build_date=settings.APP_BUILD_DATE,
+        ))
 
-SEND_MONEY_URL = os.environ.get('PUBLIC_SEND_MONEY_HOST')
-if SEND_MONEY_URL:
-    SEND_MONEY_URL = f'https://{SEND_MONEY_URL}'
-else:
-    SEND_MONEY_URL = 'http://localhost:8004'
+    def collect(self):
+        return [self.info]
+
+
+metric_registry = CollectorRegistry()
+metric_registry.register(AppMetricCollector())
 
 app = Flask(__name__)
 app.config.update(
     SESSION_COOKIE_HTTPONLY=True,
 )
 
-context = dict(
-    APP=APP,
-    ENVIRONMENT=ENVIRONMENT,
-
-    APP_GIT_COMMIT=APP_GIT_COMMIT,
-    APP_GIT_COMMIT_SHORT=APP_GIT_COMMIT_SHORT,
-    APP_BUILD_TAG=APP_BUILD_TAG,
-    APP_BUILD_DATE=APP_BUILD_DATE,
-
-    SEND_MONEY_URL=SEND_MONEY_URL,
-)
-
 
 @app.route('/')
 def index():
-    if ENVIRONMENT == 'prod':
+    if settings.ENVIRONMENT == 'prod':
         return redirect('https://www.gov.uk/send-prisoner-money')
-    return render_template('index.html', **context)
+    return render_template('index.html', **settings.TEMPLATE_CONTEXT)
 
 
 @app.route('/info')
 def info():
-    if ENVIRONMENT == 'prod':
+    if settings.ENVIRONMENT == 'prod':
         return redirect('https://www.gov.uk/staying-in-touch-with-someone-in-prison')
-    return render_template('info.html', **context)
+    return render_template('info.html', **settings.TEMPLATE_CONTEXT)
 
 
 @app.route('/robots.txt')
@@ -61,11 +55,7 @@ def robots():
 @app.route('/ping.json')
 def ping():
     return no_cache(Response(
-        json.dumps(dict(
-            build_date_key=APP_BUILD_DATE,
-            commit_id_key=APP_GIT_COMMIT,
-            version_number_key=APP_BUILD_TAG,
-        )),
+        settings.PING_JSON,
         content_type='application/json',
     ))
 
@@ -75,6 +65,18 @@ def healthcheck():
     return no_cache(Response(
         '{"*": {"status": true}}',
         content_type='application/json',
+    ))
+
+
+@app.route('/metrics')
+def metrics():
+    # auth = request.authorization
+    # if not auth or auth.username != settings.METRICS_USER or auth.password != settings.METRICS_PASS:
+    #     return Response('Auth required', 401, {'WWW-Authenticate': 'Basic realm="Login Required"'})
+    encoder, content_type = exposition.choose_encoder(request.headers.get('Accept'))
+    return no_cache(Response(
+        encoder(metric_registry),
+        content_type=content_type,
     ))
 
 
