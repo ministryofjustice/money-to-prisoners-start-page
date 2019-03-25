@@ -15,6 +15,12 @@ jobs:
       - setup_remote_docker:
           docker_layer_caching: true
       - run:
+          name: Test code
+          command: |
+            source /tmp/mtp-env.sh
+            pip3 install flake8
+            flake8
+      - run:
           name: Build docker image
           command: |
             source /tmp/mtp-env.sh
