@@ -20,18 +20,38 @@ jobs:
             source /tmp/mtp-env.sh
             pip3 install flake8
             flake8
+      - restore_cache:
+          keys:
+            - docker-v1-
+          paths:
+            - /tmp/docker-cache.tar
+      - run:
+          name: Load docker cache
+          command: |
+            source /tmp/mtp-env.sh
+            [[ -f /tmp/docker-cache.tar ]] && docker load -i /tmp/docker-cache.tar || true
       - run:
           name: Build docker image
           command: |
             source /tmp/mtp-env.sh
             docker build \
               --pull --force-rm \
+              --cache-from=${app} \
               --build-arg APP_GIT_COMMIT=${CIRCLE_SHA1} \
               --build-arg APP_GIT_BRANCH=${CIRCLE_BRANCH} \
               --build-arg APP_BUILD_TAG=${tag} \
               --build-arg APP_BUILD_DATE=$(date +%FT%T%z) \
-              --tag ${tag} \
+              --tag ${tag} --tag ${app} \
               .
+      - run:
+          name: Save docker cache
+          command: |
+            source /tmp/mtp-env.sh
+            docker save -o /tmp/docker-cache.tar ${app}
+      - save_cache:
+          key: docker-v1-
+          paths:
+            - /tmp/docker-cache.tar
       - run:
           name: Push docker image
           command: |
