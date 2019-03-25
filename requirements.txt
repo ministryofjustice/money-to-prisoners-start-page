@@ -1,2 +1,2 @@
 flask>=1,<2
-prometheus_client>=0.6,<1
+prometheus-client>=0.6,<1
