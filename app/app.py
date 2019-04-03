@@ -70,9 +70,9 @@ def healthcheck():
 
 @app.route('/metrics')
 def metrics():
-    # auth = request.authorization
-    # if not auth or auth.username != settings.METRICS_USER or auth.password != settings.METRICS_PASS:
-    #     return Response('Auth required', 401, {'WWW-Authenticate': 'Basic realm="Login Required"'})
+    auth = request.authorization
+    if not auth or auth.username != settings.METRICS_USER or auth.password != settings.METRICS_PASS:
+        return Response('Auth required', 401, {'WWW-Authenticate': 'Basic realm="Login Required"'})
     encoder, content_type = exposition.choose_encoder(request.headers.get('Accept'))
     return no_cache(Response(
         encoder(metric_registry),
