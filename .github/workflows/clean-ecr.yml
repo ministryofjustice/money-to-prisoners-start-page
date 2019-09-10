@@ -12,9 +12,8 @@ jobs:
         if: github.event.pull_request.merged
         uses: actions/checkout@v1
         with:
-          ref: ${{ github.event.pull_request.merge_commit_sha }}
+          ref: master
       - name: Delete branch images from ECR
-        if: github.event.pull_request.merged
         uses: ./.github/actions/clean-ecr
         env:
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
