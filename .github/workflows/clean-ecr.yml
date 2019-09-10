@@ -8,15 +8,11 @@ jobs:
     name: Clean ECR
     runs-on: ubuntu-18.04
     steps:
-      - name: Dump GitHub context
-        run: echo "$GITHUB_CONTEXT"
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
       - name: Checkout repository
         if: github.event.pull_request.merged
         uses: actions/checkout@v1
         with:
-          ref: master
+          ref: ${{ github.event.pull_request.merge_commit_sha }}
       - name: Delete branch images from ECR
         if: github.event.pull_request.merged
         uses: ./.github/actions/clean-ecr
