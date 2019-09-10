@@ -5,4 +5,4 @@ branding:
   color: orange
 runs:
   using: docker
-  image: ./.github/actions/clean-ecr/Dockerfile
+  image: ./Dockerfile
