@@ -1,5 +1,7 @@
 name: Clean ECR
-on: pull_request
+on:
+  pull_request:
+    types: [closed]
 jobs:
   clean-ecr:
     name: Clean ECR
