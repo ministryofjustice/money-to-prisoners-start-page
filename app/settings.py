@@ -27,9 +27,9 @@ TEMPLATE_CONTEXT = dict(
     SEND_MONEY_URL=SEND_MONEY_URL,
 )
 PING_JSON = json.dumps(dict(
-    build_date_key=APP_BUILD_DATE,
-    commit_id_key=APP_GIT_COMMIT,
-    version_number_key=APP_BUILD_TAG,
+    build_date=APP_BUILD_DATE,
+    commit_id=APP_GIT_COMMIT,
+    version_number=APP_BUILD_TAG,
 ))
 
 METRICS_USER = os.environ.get('METRICS_USER', 'prom')
