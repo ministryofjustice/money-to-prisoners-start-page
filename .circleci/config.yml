@@ -60,12 +60,26 @@ jobs:
             echo "Pushing ${tag} to ECR"
             docker tag ${tag} ${ECR_ENDPOINT}/prisoner-money/money-to-prisoners:${tag}
             docker push ${ECR_ENDPOINT}/prisoner-money/money-to-prisoners:${tag}
-            if [[ "${CIRCLE_BRANCH}" == "master" ]]; then
+            if [[ "${CIRCLE_BRANCH}" == "auto-deploy-test" ]]; then
               echo "Pushing ${app} to ECR (acts as latest)"
               docker tag ${tag} ${ECR_ENDPOINT}/prisoner-money/money-to-prisoners:${app}
               docker push ${ECR_ENDPOINT}/prisoner-money/money-to-prisoners:${app}
             fi
             docker logout ${ECR_ENDPOINT}
+      - run:
+          name: Deploy
+          command: |
+            if [[ "${CIRCLE_BRANCH}" == "auto-deploy-test" ]]; then
+              source /tmp/mtp-env.sh
+              echo -n ${K8S_CLUSTER_CERT} | base64 -d > ./ca.crt
+              kubectl config set-cluster ${K8S_CLUSTER_NAME} --certificate-authority=./ca.crt --server=https://api.${K8S_CLUSTER_NAME}
+              kubectl config set-credentials circleci --token=${K8S_TOKEN}
+              kubectl config set-context ${K8S_CLUSTER_NAME} --cluster=${K8S_CLUSTER_NAME} --user=circleci --namespace=${K8S_NAMESPACE}
+              kubectl config use-context ${K8S_CLUSTER_NAME}
+              kubectl --namespace=${K8S_NAMESPACE} get pods
+              echo export image=${ECR_ENDPOINT}/prisoner-money/money-to-prisoners:${tag}
+              kubectl patch deployment ${app} --patch '{"metadata": {"annotations": {"kubernetes.io/change-cause": "${CIRCLE_BRANCH}.${CIRCLE_SHA1:0:7}"}}, "spec": {"template": {"spec": {"containers": [{"name": "app", "image": "${image}"}], "initContainers": [{"name": "copy-static", "image": "${image}"}]}}}}'
+            fi
       - run:
           name: Clean up ECR
           command: |
@@ -86,7 +100,7 @@ jobs:
             IMAGES_TO_DELETE=$(aws ecr list-images --repository-name prisoner-money/money-to-prisoners --filter tagStatus=UNTAGGED --query 'imageIds[*].imageDigest' --output text)
             delete_images
 
-            if [[ "${CIRCLE_BRANCH}" != "master" ]]; then
+            if [[ "${CIRCLE_BRANCH}" != "auto-deploy-test" ]]; then
               echo "Deleting other images from branch ${CIRCLE_BRANCH}"
               IMAGES_TO_DELETE=$(aws ecr describe-images --repository-name prisoner-money/money-to-prisoners --query 'imageDetails[?contains(map(&starts_with(@, '"'"${app}.${CIRCLE_BRANCH}."'"'), @.imageTags), `true`) && ! contains(@.imageTags, '"'"${tag}"'"')].imageDigest' --output text)
               delete_images
