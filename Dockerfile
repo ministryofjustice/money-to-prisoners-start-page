@@ -1,9 +1,9 @@
 FROM python:3-alpine
 
 RUN set -ex; \
-  addgroup -S mtp && \
-  adduser -D -S -h /app -s /sbin/nologin -G mtp mtp && \
-  test $(id -u mtp) = 100
+  addgroup -S mtp \
+  && \
+  adduser -u 100 -D -S -h /app -s /sbin/nologin -G mtp mtp
 
 WORKDIR /app
 COPY requirements.txt .
