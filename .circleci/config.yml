@@ -23,8 +23,9 @@ jobs:
             pip3 install flake8
             flake8
       - restore_cache:
+          name: Restoring docker cache
           keys:
-            - docker-v1-
+            - docker-v1-{{ checksum "Dockerfile" }}
           paths:
             - /tmp/docker-cache.tar
       - run:
@@ -46,12 +47,13 @@ jobs:
               --tag ${tag} --tag ${app} \
               .
       - run:
-          name: Save docker cache
+          name: Dumping docker cache
           command: |
             source /tmp/mtp-env.sh
             docker save -o /tmp/docker-cache.tar ${app}
       - save_cache:
-          key: docker-v1-
+          name: Saving docker cache
+          key: docker-v1-{{ checksum "Dockerfile" }}
           paths:
             - /tmp/docker-cache.tar
       - run:
