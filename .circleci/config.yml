@@ -11,8 +11,10 @@ jobs:
       - run:
           name: Inspect tags
           command: |
+            export tag=${app}.${CIRCLE_BRANCH}.${CIRCLE_SHA1:0:7}
+            echo "Building ${tag}"
             echo export registry=${ECR_ENDPOINT}/prisoner-money/money-to-prisoners > /tmp/mtp-env.sh
-            echo export tag=${app}.${CIRCLE_BRANCH}.${CIRCLE_SHA1:0:7} >> /tmp/mtp-env.sh
+            echo export tag=${tag} >> /tmp/mtp-env.sh
             echo export version=${CIRCLE_BRANCH}.${CIRCLE_SHA1:0:7} >> /tmp/mtp-env.sh
       - setup_remote_docker:
           docker_layer_caching: true
@@ -33,6 +35,11 @@ jobs:
           command: |
             source /tmp/mtp-env.sh
             [[ -f /tmp/docker-cache.tar ]] && docker load -i /tmp/docker-cache.tar || true
+      - run:
+          name: Log into ECR
+          command: |
+            source /tmp/mtp-env.sh
+            $(aws ecr get-login --region ${AWS_DEFAULT_REGION} --no-include-email)
       - run:
           name: Build docker image
           command: |
@@ -60,7 +67,6 @@ jobs:
           name: Push docker image
           command: |
             source /tmp/mtp-env.sh
-            $(aws ecr get-login --region ${AWS_DEFAULT_REGION} --no-include-email)
             echo "Pushing ${tag} to ECR"
             docker tag ${tag} ${registry}:${tag}
             docker push ${registry}:${tag}
@@ -69,9 +75,13 @@ jobs:
               docker tag ${tag} ${registry}:${app}
               docker push ${registry}:${app}
             fi
-            docker logout ${ECR_ENDPOINT}
       - run:
-          name: Deploy
+          name: Log out of ECR
+          command: |
+            source /tmp/mtp-env.sh
+            docker logout ${ECR_ENDPOINT}
+      - deploy:
+          name: Deploy to test
           command: |
             if [[ "${CIRCLE_BRANCH}" == "master" ]]; then
               source /tmp/mtp-env.sh
