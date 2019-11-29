@@ -8,7 +8,7 @@ jobs:
     working_directory: /tmp/repo
     steps:
       - checkout
-      - run:
+      - run: &inspect-tags
           name: Inspect tags
           command: |
             export tag=${app}.${CIRCLE_BRANCH}.${CIRCLE_SHA1:0:7}
@@ -35,7 +35,7 @@ jobs:
           command: |
             source /tmp/mtp-env.sh
             [[ -f /tmp/docker-cache.tar ]] && docker load -i /tmp/docker-cache.tar || true
-      - run:
+      - run: &log-into-ecr
           name: Log into ECR
           command: |
             source /tmp/mtp-env.sh
@@ -75,7 +75,7 @@ jobs:
               docker tag ${tag} ${registry}:${app}
               docker push ${registry}:${app}
             fi
-      - run:
+      - run: &log-out-of-ecr
           name: Log out of ECR
           command: |
             source /tmp/mtp-env.sh
@@ -121,8 +121,43 @@ jobs:
               IMAGES_TO_DELETE=$(aws ecr describe-images --repository-name prisoner-money/money-to-prisoners --query 'imageDetails[?contains(map(&starts_with(@, '"'"${app}.${CIRCLE_BRANCH}."'"'), @.imageTags), `true`) && ! contains(@.imageTags, '"'"${tag}"'"')].imageDigest' --output text)
               delete_images
             fi
+  security-scan:
+    docker:
+      - image: ${ECR_ENDPOINT}/prisoner-money/money-to-prisoners:deploy-tools
+    environment:
+      app: start-page
+    working_directory: /tmp/trivy
+    steps:
+      - run: *inspect-tags
+      - setup_remote_docker
+      - run: *log-into-ecr
+      - run:
+          name: Pull from ECR
+          command: |
+            source /tmp/mtp-env.sh
+            docker pull ${registry}:${tag}
+      - run: *log-out-of-ecr
+      - run:
+          name: Install trivy
+          command: |
+            VERSION=$(
+                wget -q -O - "https://api.github.com/repos/aquasecurity/trivy/releases/latest" | \
+                grep '"tag_name":' | \
+                sed -E 's/.*"v([^"]+)".*/\1/'
+            )
+            wget https://github.com/aquasecurity/trivy/releases/download/v${VERSION}/trivy_${VERSION}_Linux-64bit.tar.gz
+            tar zxvf trivy_${VERSION}_Linux-64bit.tar.gz trivy
+            mv trivy /usr/local/bin
+      - run:
+          name: Scan for vulnerabilities
+          command: |
+            source /tmp/mtp-env.sh
+            trivy --exit-code 0 --no-progress ${registry}:${tag}
 workflows:
   version: 2
   build-test-push:
     jobs:
       - build-test-push
+      - security-scan:
+          requires:
+            - build-test-push
