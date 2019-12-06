@@ -26,6 +26,8 @@ metric_registry.register(AppMetricCollector())
 app = Flask(__name__)
 app.config.update(
     SESSION_COOKIE_HTTPONLY=True,
+    SESSION_COOKIE_SECURE=True,
+    SESSION_COOKIE_SAMESITE='Lax',
 )
 
 
@@ -81,6 +83,6 @@ def metrics():
 
 
 def no_cache(response):
-    response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+    response.headers['Cache-Control'] = 'no-store, no-cache, private, must-revalidate, max-age=0'
     response.headers['Pragma'] = 'no-cache'
     return response
