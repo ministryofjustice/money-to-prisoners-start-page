@@ -18,7 +18,7 @@ Run locally in Docker:
 
 ```bash
 docker build --tag start-page .
-docker run --rm -p 80:80 start-page
+docker run --rm -p 8080:8080 start-page
 ```
 
 Deployment
