@@ -9,16 +9,16 @@ RUN set -ex; \
   && \
   apk del tzdata \
   && \
-  addgroup -S mtp \
+  addgroup -g 1000 mtp \
   && \
-  adduser -D -S -h /app -s /sbin/nologin -u 100 -G mtp mtp
+  adduser -h /home/mtp -s /sbin/nologin -D -u 1000 -G mtp mtp
 
 WORKDIR /app
 COPY requirements.txt .
 RUN mkdir /app/static
 RUN python -m pip install -r requirements.txt
 COPY app .
-USER 100
+USER 1000
 
 ENV APP_GIT_COMMIT ${APP_GIT_COMMIT}
 ENV APP_GIT_BRANCH ${APP_GIT_BRANCH}
