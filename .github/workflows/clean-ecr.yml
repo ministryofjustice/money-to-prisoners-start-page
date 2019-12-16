@@ -10,9 +10,7 @@ jobs:
     steps:
       - name: Checkout repository
         if: github.event.pull_request.merged
-        uses: actions/checkout@v1
-        with:
-          ref: master
+        uses: actions/checkout@v2
       - name: Delete branch images from ECR
         uses: ./.github/actions/clean-ecr
         env:
