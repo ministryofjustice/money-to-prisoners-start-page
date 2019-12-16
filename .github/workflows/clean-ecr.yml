@@ -1,8 +1,6 @@
 name: Clean ECR
 on:
   pull_request:
-    branches:
-      - master
     types:
       - closed
 jobs:
@@ -12,6 +10,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          ref: master
       - name: Delete branch images from ECR
         uses: ./.github/actions/clean-ecr
         env:
