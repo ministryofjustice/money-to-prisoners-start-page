@@ -34,3 +34,15 @@ PING_JSON = json.dumps(dict(
 
 METRICS_USER = os.environ.get('METRICS_USER', 'prom')
 METRICS_PASS = os.environ.get('METRICS_PASS', 'prom')
+
+if os.environ.get('SENTRY_DSN'):
+    import sentry_sdk
+    from sentry_sdk.integrations.flask import FlaskIntegration
+
+    sentry_sdk.init(
+        dsn=os.environ['SENTRY_DSN'],
+        integrations=[FlaskIntegration()],
+        environment=ENVIRONMENT,
+        release=APP_GIT_COMMIT or 'unknown',
+        send_default_pii=False,
+    )
