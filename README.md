@@ -5,18 +5,27 @@ This repository contains the user research content for the ‘Send money to a pr
 
 The live content can be found at [gov.uk/send-prisoner-money](https://www.gov.uk/send-prisoner-money)
 
+In production, this app is used to redirect legacy domains/paths.
+
+Requirements
+------------
+
+- Python 3.6+
+
+Unlike most Prisoner Money apps, this one does not use the REST api.
+
 Development
 -----------
 
 Run locally:
 
-```bash
+```shell script
 FLASK_ENV=development FLASK_APP=app/app.py flask run
 ```
 
 Run locally in Docker:
 
-```bash
+```shell script
 docker build --tag start-page .
 docker run --rm -p 8080:8080 start-page
 ```
