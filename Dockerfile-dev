@@ -1,0 +1,18 @@
+ARG ECR_ENDPOINT
+ARG SERVICE
+FROM ${ECR_ENDPOINT}/prisoner-money/money-to-prisoners:${SERVICE}
+
+# We need to be root to move the venv outside the codebase
+USER root
+
+# Having a text editor in a dev container is super useful
+# Also sudo is needed to install anything further from mtp_user
+RUN apk add \
+  vim \
+  sudo
+
+COPY --chown=mtp:mtp . /app/
+#This should already be the case but just to be sure...
+WORKDIR /app
+
+# vim: ft=dockerfile
