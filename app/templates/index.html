@@ -1,128 +1,154 @@
 {% extends 'base.html' %}
 
-{# saved from https://www.gov.uk/send-prisoner-money #}
+{# saved from https://www.gov.uk/send-prisoner-money 2020-02-05 #}
 
 {% block title %}Send money to someone in prison - GOV.UK{% endblock %}
 
 {% block content %}
 
-  <div id="wrapper" class="transaction service">
-        <div class="govuk-breadcrumbs">
-  <ol>
-    <li>
-        <a href="https://www.gov.uk/">Home</a>
-    </li>
-    <li>
-        <a href="https://www.gov.uk/browse/justice">Crime, justice and the law</a>
-    </li>
-    <li>
-        <a href="https://www.gov.uk/browse/justice/prisons-probation">Prisons and probation</a>
-    </li>
-  </ol>
+ <div class="gem-c-contextual-breadcrumbs">
+        <div class="gem-c-breadcrumbs govuk-breadcrumbs govuk-breadcrumbs--collapse-on-mobile">
+          <ol class="govuk-breadcrumbs__list">
+            <li class="govuk-breadcrumbs__list-item">
+              <a class="govuk-breadcrumbs__link" href="#">Home</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+              <a class="govuk-breadcrumbs__link" href="#">Crime, justice and the law</a>
+            </li>
+            <li class="govuk-breadcrumbs__list-item">
+              <a class="govuk-breadcrumbs__link" href="#">Prisons and probation</a>
+            </li>
+          </ol>
+        </div>
+      </div>
+
+
+
+      <div class="govuk-grid-row">
+
+<main id="content" role="main" class="">
+
+  <header class="page-header govuk-grid-column-two-thirds">
+    <div class="gem-c-title govuk-!-margin-top-8 govuk-!-margin-bottom-8">
+  <h1 class="gem-c-title__text ">
+    Send money to someone in prison
+  </h1>
 </div>
-
-
-      <div class="grid-row">
-        <main id="content" role="main" class="">
-  <header class="page-header">
-    <div>
-      <h1>
-
-        Send money to someone in prison
-      </h1>
-    </div>
   </header>
-  <div class="article-container group">
-    {% include 'test-badge.html' %}
-
-
+  <div class="article-container group govuk-grid-column-two-thirds">
     <div class="content-block">
       <div class="inner">
 
   <section class="intro">
     <div class="get-started-intro">
-<p>You can use this service to make a payment by debit card. We accept Visa, Mastercard and Maestro debit cards.</p>
 
-<p>You can also find out how to make a UK bank transfer to a prisoner by:</p>
+<div class="gem-c-govspeak govuk-govspeak " data-module="govspeak">
 
-<ul>
-  <li>online banking</li>
-  <li>mobile banking app</li>
-  <li>telephone banking</li>
-</ul>
+        <p>You can use this service to make a payment by Visa, Mastercard or Maestro debit card. Money usually takes less than 3 working days to reach a prisoner’s account, but it may take longer.</p>
+
+<p>This service is free, secure and available in all prisons in England and Wales.</p>
 
 <div role="note" aria-label="Information" class="application-notice info-notice">
-<p>Your money won’t reach the prisoner if you make a transfer from a bank branch or non-UK account.</p>
+<p>You can no longer send money by bank transfer, cheque, postal order or send cash by post to any prison. You’ll need to use a debit card instead.</p>
 </div>
 
-<p>
-    This service is free and secure, and available in all <a href="{{ SEND_MONEY_URL }}/en-gb/help/prisons/">public prisons</a> in England and Wales.
-    You can’t use the service to send money to someone in a <a href="https://www.justice.gov.uk/about/hmps/contracted-out">private prison</a>.
-</p>
 
 </div>
+    </div>
     <p id="get-started" class="get-started group">
-      <a href="{{ SEND_MONEY_URL }}/en-gb/" rel="external" class="button" role="button">Start now</a>
+
+
+
+  <a class="gem-c-button govuk-button govuk-button--start gem-c-button--bottom-margin" role="button" rel="external" href="{{ SEND_MONEY_URL }}">  Start now
+  <svg class="govuk-button__start-icon" xmlns="http://www.w3.org/2000/svg" width="17.5" height="19" viewBox="0 0 33 40" role="presentation" focusable="false">
+    <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path>
+  </svg>
+</a>
+
+
     </p>
   </section>
 
   <section class="more">
         <div id="before-you-start">
-    <h2>Before you start</h2>
+    <h2 class="gem-c-heading gem-c-heading--font-size-27   govuk-!-margin-bottom-4">Before you start</h2>
 
-    <p>You’ll need the:</p>
+
+<div class="gem-c-govspeak govuk-govspeak " data-module="govspeak">
+
+      <p>You’ll need the:</p>
 
 <ul>
   <li>prisoner’s date of birth</li>
   <li>prisoner number</li>
 </ul>
 
-<p>Money usually takes around 3 working days to reach a prisoner’s account.</p>
-<p>You need a bank account to use this service. If you don’t have one you can send money to a prisoner <a href="{{ url_for('info') }}">using a postal order, a cheque or cash</a>.</p>
+<h2 id="help-using-the-service">Help using the service</h2>
 
-<h2>Help using the service</h2>
-<p>You can <a href="{{ SEND_MONEY_URL }}/en-gb/help/">get help</a> if you’ve already sent money but it hasn’t reached the prisoner yet.</p>
-<p>You can also <a href="{{ SEND_MONEY_URL }}/en-gb/contact-us/">contact the support team</a> if you have any other questions about using the service.</p>
+<p><a rel="external" href="{{ SEND_MONEY_URL }}/help/">You can get help</a> with making a payment, ask a question about a payment you’ve already made, or get help with accessing the service.</p>
 
+<h2 id="if-you-cannot-use-the-online-service">If you cannot use the online service</h2>
+
+<p>You may be able to <a rel="external" href="{{ SEND_MONEY_URL }}/help/apply-for-exemption/">apply for an exemption</a> - for example if you:</p>
+
+<ul>
+  <li>are unable to use a computer, a smart phone or the internet</li>
+  <li>do not have a debit card</li>
+</ul>
+
+<p>This will allow you to send money by post.</p>
+
+<p>You can also find out how to get a debit card by <a rel="external" href="{{ SEND_MONEY_URL }}/help/setup-basic-bank-account/">setting up a basic bank account</a>.</p>
+
+
+
+</div>
   </div>
 
 
 
   </section>
 
-
       </div>
     </div>
-    <div class="meta-data group">
-    <p class="modified-date">Last updated: 5 February 2019</p>
-</div>
-
-
 
   </div>
 </main>
 
-<div class="related-container">
-  <aside class="govuk-related-items" role="complementary">
-    <h2>
-      Related content
-    </h2>
-    <nav role="navigation">
-      <ul>
-          <li>
-            <a href="{{ url_for('info') }}">
-              Staying in touch with someone in prison
-            </a>
-          </li>
-      </ul>
-    </nav>
-</aside>
+<div class="govuk-grid-column-one-third">
+
+<div class="gem-c-contextual-sidebar">
+
+
+  <div class="gem-c-related-navigation">
+
+      <h2 id="related-nav-related_items-4d13b22c" class="gem-c-related-navigation__main-heading">
+        Related content
+      </h2>
+
+
+
+
+      <nav role="navigation" class="gem-c-related-navigation__nav-section" aria-labelledby="related-nav-related_items-4d13b22c" data-module="gem-toggle">
+
+
+  <ul class="gem-c-related-navigation__link-list">
+
+
+        <li class="gem-c-related-navigation__link"><a class="gem-c-related-navigation__section-link gem-c-related-navigation__section-link--sidebar  gem-c-related-navigation__section-link--other" href="{{ url_for('info') }}">Staying in touch with someone in prison</a></li>
+
+  </ul>
+</nav>
+
+  </div>
+
+
 
 </div>
 
-      </div>
-
-
 </div>
+
+
+        </div>
 
 {% endblock %}
