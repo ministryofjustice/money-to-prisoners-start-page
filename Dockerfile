@@ -1,4 +1,4 @@
-FROM python:3-alpine
+FROM python:3.9-alpine
 
 RUN set -ex; \
   apk add --no-cache --no-progress tzdata \
@@ -9,9 +9,9 @@ RUN set -ex; \
   && \
   apk del tzdata \
   && \
-  addgroup -g 1000 mtp \
+  addgroup --gid 1000 mtp \
   && \
-  adduser -h /home/mtp -s /sbin/nologin -D -u 1000 -G mtp mtp
+  adduser --home /home/mtp --shell /sbin/nologin --disabled-password --gecos 'Prisoner Money' --uid 1000 --ingroup mtp mtp
 
 WORKDIR /app
 COPY requirements.txt .
