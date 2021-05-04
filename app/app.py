@@ -54,6 +54,15 @@ def robots():
     )
 
 
+@app.route('/.well-known/security.txt')
+def security_txt():
+    return redirect(
+        'https://raw.githubusercontent.com/ministryofjustice/security-guidance'
+        '/main/contact/vulnerability-disclosure-security.txt',
+        code=301,
+    )
+
+
 @app.route('/ping.json')
 def ping():
     return no_cache(Response(
