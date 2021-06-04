@@ -1,18 +1,20 @@
-ARG ECR_ENDPOINT
-ARG SERVICE
-FROM ${ECR_ENDPOINT}/prisoner-money/money-to-prisoners:${SERVICE}
+# This image is used for local development only
+# see `docker compose` documentation in money-to-prisoners-common
+# vim: ft=dockerfile
 
-# We need to be root to move the venv outside the codebase
+ARG ECR_ENDPOINT
+FROM ${ECR_ENDPOINT}/prisoner-money/money-to-prisoners:start-page
+
+# Need to escalate to root to install packages
 USER root
 
 # Having a text editor in a dev container is super useful
-# Also sudo is needed to install anything further from mtp_user
+# Also sudo is needed to install anything further as mtp user
 RUN apk add \
   vim \
   sudo
 
 COPY --chown=mtp:mtp . /app/
-#This should already be the case but just to be sure...
-WORKDIR /app
 
-# vim: ft=dockerfile
+# Revert back to settings under which the app should run
+USER mtp
