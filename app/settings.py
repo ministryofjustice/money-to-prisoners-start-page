@@ -45,5 +45,4 @@ if os.environ.get('SENTRY_DSN'):
         environment=ENVIRONMENT,
         release=APP_GIT_COMMIT or 'unknown',
         send_default_pii=False,
-        traces_sample_rate=1.0,
     )
