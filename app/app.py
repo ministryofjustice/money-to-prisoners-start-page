@@ -57,8 +57,7 @@ def robots():
 @app.route('/.well-known/security.txt')
 def security_txt():
     return redirect(
-        'https://raw.githubusercontent.com/ministryofjustice/security-guidance'
-        '/main/contact/vulnerability-disclosure-security.txt',
+        'https://security-guidance.service.justice.gov.uk/.well-known/security.txt',
         code=301,
     )
 
