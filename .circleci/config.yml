@@ -30,7 +30,7 @@ jobs:
           name: Test code
           command: |
             source /tmp/mtp-env.sh
-            pip3 install flake8
+            pip3 install -r requirements-tests.txt
             flake8
       - restore_cache:
           name: Restoring docker cache
