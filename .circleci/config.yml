@@ -30,8 +30,10 @@ jobs:
           name: Test code
           command: |
             source /tmp/mtp-env.sh
-            pip3 install flake8
+            mkdir -p /tmp/reports
+            pip3 install -r requirements.txt -r requirements-tests.txt
             flake8
+            pytest --capture no --junit-xml /tmp/reports/pytest.xml
       - restore_cache:
           name: Restoring docker cache
           keys:
@@ -71,6 +73,10 @@ jobs:
           key: docker-v1-{{ checksum "Dockerfile" }}
           paths:
             - /tmp/docker-cache.tar
+      - store_artifacts:
+          path: /tmp/reports
+      - store_test_results:
+          path: /tmp/reports
       - run:
           name: Push docker image
           command: |
