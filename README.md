@@ -12,7 +12,7 @@ Requirements
 
 - Python 3.8+ (currently runs on 3.10 in production)
 
-Unlike most Prisoner Money apps, this one does not use the REST api.
+Unlike most Prisoner Money apps, this one does not use the REST api and is built with Flask instead of Django.
 
 Development
 -----------
