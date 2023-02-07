@@ -10,7 +10,7 @@ In production, this app is used to redirect legacy domains/paths.
 Requirements
 ------------
 
-- Python 3.8+ (currently runs on 3.10 in production)
+- Python 3.10
 
 Unlike most Prisoner Money apps, this one does not use the REST api and is built with Flask instead of Django.
 
