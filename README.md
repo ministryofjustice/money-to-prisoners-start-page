@@ -17,6 +17,8 @@ Unlike most Prisoner Money apps, this one does not use the REST api and is built
 Development
 -----------
 
+[![CircleCI](https://circleci.com/gh/ministryofjustice/money-to-prisoners-start-page.svg?style=svg)](https://circleci.com/gh/ministryofjustice/money-to-prisoners-start-page)
+
 ### Run locally
 
 It's recommended that you use a python virtual environment to isolate each application.
