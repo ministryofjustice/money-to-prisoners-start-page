@@ -32,7 +32,7 @@ pip install -r requirements.txt  # installs python dependencies; needed whenever
 ```
 
 ```shell
-FLASK_ENV=development FLASK_APP=app/app.py flask run
+FLASK_DEBUG=1 FLASK_APP=app/app.py flask run
 ```
 
 ### Run locally in Docker
