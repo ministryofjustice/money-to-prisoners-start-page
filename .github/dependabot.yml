@@ -6,7 +6,15 @@ updates:
       interval: monthly
     pull-request-branch-name:
       separator: '-'
+
   - package-ecosystem: docker
+    directory: /
+    schedule:
+      interval: monthly
+    pull-request-branch-name:
+      separator: '-'
+
+  - package-ecosystem: github-actions
     directory: /
     schedule:
       interval: monthly
