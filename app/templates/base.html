@@ -1,260 +1,195 @@
 <!DOCTYPE html>
-<html lang="en" class=" show-global-bar">
+<html class="govuk-template show-global-bar" lang="en">
 <head>
   <title>{% block title %}{% endblock %}</title>
-  <link rel="stylesheet" media="screen" href="{{ url_for('static', filename='govuk-template-3e3f4a131aca72f9b2e458dfd318f65420aef6ada35539243aac38ebbbbcc64f.css') }}">
-  <link rel="stylesheet" media="all" href="{{ url_for('static', filename='fonts-c57ab80a95f2b1764162611b3c98a4c098b356f8e30baf1e50cd63edea464c01.css') }}">
-  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon-8d811b8c3badbc0b0e2f6e25d3660a96cc0cca7993e6f32e98785f205fc40907.ico') }}" type="image/x-icon">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='application-77f83a518d8e17d5eae2ae5be5b982cdc0e43576514227dccb674487a8cabc1c.css') }}" media="all">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon-f54816fc15997bd42cd90e4c50b896a1fc098c0c32957d4e5effbfa9f9b35e53.ico') }}" type="image/x-icon">
+
   <meta name="theme-color" content="#0b0c0c">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" media="screen" href="{{ url_for('static', filename='core-layout-5c9e91c1edfd49978562c26e27d70735f37888ac7de52549466b18d1672c7733.css') }}">
-  <link rel="stylesheet" media="screen" href="{{ url_for('static', filename='application-61879034ce7a0faaef322b8f1c486203d3e4db4114fe3af0878643f5443ec8a9.css') }}">
 </head>
+<body class="gem-c-layout-for-public govuk-template__body mainstream">
 
-  <body class="mainstream">
-
-    <div id="skiplink-container">
-      <div>
-        <a href="#content" class="skiplink govuk-link">Skip to main content</a>
-      </div>
-    </div>
-
-
-
-    <header role="banner" id="global-header" class="">
-      <div class="header-wrapper">
-        <div class="header-global">
-          <div class="header-logo">
-            <a href="#" title="Go to the GOV.UK homepage" class="content govuk-header__link govuk-header__link--homepage" id="logo">
-              <span class="govuk-header__logotype">
-                <svg aria-hidden="true" focusable="false" class="govuk-header__logotype-crown" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 132 97" height="30" width="36">
-                  <path fill="currentColor" fill-rule="evenodd" d="M25 30.2c3.5 1.5 7.7-.2 9.1-3.7 1.5-3.6-.2-7.8-3.9-9.2-3.6-1.4-7.6.3-9.1 3.9-1.4 3.5.3 7.5 3.9 9zM9 39.5c3.6 1.5 7.8-.2 9.2-3.7 1.5-3.6-.2-7.8-3.9-9.1-3.6-1.5-7.6.2-9.1 3.8-1.4 3.5.3 7.5 3.8 9zM4.4 57.2c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.5-1.5-7.6.3-9.1 3.8-1.4 3.5.3 7.6 3.9 9.1zm38.3-21.4c3.5 1.5 7.7-.2 9.1-3.8 1.5-3.6-.2-7.7-3.9-9.1-3.6-1.5-7.6.3-9.1 3.8-1.3 3.6.4 7.7 3.9 9.1zm64.4-5.6c-3.6 1.5-7.8-.2-9.1-3.7-1.5-3.6.2-7.8 3.8-9.2 3.6-1.4 7.7.3 9.2 3.9 1.3 3.5-.4 7.5-3.9 9zm15.9 9.3c-3.6 1.5-7.7-.2-9.1-3.7-1.5-3.6.2-7.8 3.7-9.1 3.6-1.5 7.7.2 9.2 3.8 1.5 3.5-.3 7.5-3.8 9zm4.7 17.7c-3.6 1.5-7.8-.2-9.2-3.8-1.5-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.3 3.5-.4 7.6-3.9 9.1zM89.3 35.8c-3.6 1.5-7.8-.2-9.2-3.8-1.4-3.6.2-7.7 3.9-9.1 3.6-1.5 7.7.3 9.2 3.8 1.4 3.6-.3 7.7-3.9 9.1zM69.7 17.7l8.9 4.7V9.3l-8.9 2.8c-.2-.3-.5-.6-.9-.9L72.4 0H59.6l3.5 11.2c-.3.3-.6.5-.9.9l-8.8-2.8v13.1l8.8-4.7c.3.3.6.7.9.9l-5 15.4v.1c-.2.8-.4 1.6-.4 2.4 0 4.1 3.1 7.5 7 8.1h.2c.3 0 .7.1 1 .1.4 0 .7 0 1-.1h.2c4-.6 7.1-4.1 7.1-8.1 0-.8-.1-1.7-.4-2.4V34l-5.1-15.4c.4-.2.7-.6 1-.9zM66 92.8c16.9 0 32.8 1.1 47.1 3.2 4-16.9 8.9-26.7 14-33.5l-9.6-3.4c1 4.9 1.1 7.2 0 10.2-1.5-1.4-3-4.3-4.2-8.7L108.6 76c2.8-2 5-3.2 7.5-3.3-4.4 9.4-10 11.9-13.6 11.2-4.3-.8-6.3-4.6-5.6-7.9 1-4.7 5.7-5.9 8-.5 4.3-8.7-3-11.4-7.6-8.8 7.1-7.2 7.9-13.5 2.1-21.1-8 6.1-8.1 12.3-4.5 20.8-4.7-5.4-12.1-2.5-9.5 6.2 3.4-5.2 7.9-2 7.2 3.1-.6 4.3-6.4 7.8-13.5 7.2-10.3-.9-10.9-8-11.2-13.8 2.5-.5 7.1 1.8 11 7.3L80.2 60c-4.1 4.4-8 5.3-12.3 5.4 1.4-4.4 8-11.6 8-11.6H55.5s6.4 7.2 7.9 11.6c-4.2-.1-8-1-12.3-5.4l1.4 16.4c3.9-5.5 8.5-7.7 10.9-7.3-.3 5.8-.9 12.8-11.1 13.8-7.2.6-12.9-2.9-13.5-7.2-.7-5 3.8-8.3 7.1-3.1 2.7-8.7-4.6-11.6-9.4-6.2 3.7-8.5 3.6-14.7-4.6-20.8-5.8 7.6-5 13.9 2.2 21.1-4.7-2.6-11.9.1-7.7 8.8 2.3-5.5 7.1-4.2 8.1.5.7 3.3-1.3 7.1-5.7 7.9-3.5.7-9-1.8-13.5-11.2 2.5.1 4.7 1.3 7.5 3.3l-4.7-15.4c-1.2 4.4-2.7 7.2-4.3 8.7-1.1-3-.9-5.3 0-10.2l-9.5 3.4c5 6.9 9.9 16.7 14 33.5 14.8-2.1 30.8-3.2 47.7-3.2z">
-                  </path>
-                  <image src="https://www.gov.uk/assets/static/gov.uk_logotype_crown_invert_trans-203e1db49d3eff430d7dc450ce723c1002542fe1d2bce661b6d8571f14c1043c.png" xlink:href="" class="govuk-header__logotype-crown-fallback-image" width="36" height="32">
-                  </image>
-                </svg>
-                <span class="govuk-header__logotype-text">
-                  GOV.UK
-                </span>
-              </span>
-            </a>
-          </div>
-
-
-
-
-
-        </div>
-
-      </div>
-    </header>
-
-
+<header role="banner" class="gem-c-layout-super-navigation-header">
+  <div class="gem-c-layout-super-navigation-header__container govuk-clearfix">
     <div class="govuk-width-container">
-      <div id="global-header-bar"></div>
-      <div id="global-bar" class="global-bar"></div>
-      {% include 'test-banner.html' %}
-    </div>
-
-    <div id="wrapper" class="transaction service">
-      {% block content %}{% endblock %}
-     </div>
-
-
-    <footer class="group js-footer" id="footer" role="contentinfo">
-      <div class="govuk-width-container">
-        <div class="footer-container govuk-main-wrapper">
-
-    <div class="govuk-grid-row footer-categories">
-      <div class="govuk-grid-column-two-thirds">
-        <h2>Services and information</h2>
-
-        <div class="govuk-grid-row">
-          <div class="govuk-grid-column-one-half">
-            <ul>
-              <li>
-                <a class="govuk-link" href="#">
-                  Benefits
-                </a>
-              </li>
-              <li>
-                <a class="govuk-link" href="#">
-                  Births, deaths, marriages and care
-                </a>
-              </li>
-              <li>
-                <a class="govuk-link" href="#">
-                  Business and self-employed
-                </a>
-              </li>
-              <li>
-                <a class="govuk-link" href="#">
-                  Childcare and parenting
-                </a>
-              </li>
-              <li>
-                <a class="govuk-link" href="#">
-                  Citizenship and living in the UK
-                </a>
-              </li>
-              <li>
-                <a class="govuk-link" href="#">
-                  Crime, justice and the law
-                </a>
-              </li>
-              <li>
-                <a class="govuk-link" href="#">
-                  Disabled people
-                </a>
-              </li>
-              <li>
-                <a class="govuk-link" href="#">
-                  Driving and transport
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="govuk-grid-column-one-half">
-            <ul>
-              <li>
-                <a class="govuk-link" href="#">
-                  Education and learning
-                </a>
-              </li>
-              <li>
-                <a class="govuk-link" href="#">
-                  Employing people
-                </a>
-              </li>
-              <li>
-                <a class="govuk-link" href="#">
-                  Environment and countryside
-                </a>
-              </li>
-              <li>
-                <a class="govuk-link" href="#">
-                  Housing and local services
-                </a>
-              </li>
-              <li>
-                <a class="govuk-link" href="#">
-                  Money and tax
-                </a>
-              </li>
-              <li>
-                <a class="govuk-link" href="#">
-                  Passports, travel and living abroad
-                </a>
-              </li>
-              <li>
-                <a class="govuk-link" href="#">
-                  Visas and immigration
-                </a>
-              </li>
-              <li>
-                <a class="govuk-link" href="#">
-                  Working, jobs and pensions
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
+      <div class="gem-c-layout-super-navigation-header__header-logo">
+        <a class="govuk-header__link govuk-header__link--homepage" id="logo" aria-label="Go to the GOV.UK homepage" href="#">
+          <span class="govuk-header__logotype">
+            <svg aria-hidden="true" class="govuk-header__logotype-crown gem-c-layout-super-navigation-header__logotype-crown" height="30" width="32" focusable="false" viewBox="0 0 32 30" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22.6 10.4c-1 .4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s-.1 2-1 2.4m-5.9 6.7c-.9.4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s-.1 2-1 2.4m10.8-3.7c-1 .4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s0 2-1 2.4m3.3 4.8c-1 .4-2-.1-2.4-1-.4-.9.1-2 1-2.4.9-.4 2 .1 2.4 1s-.1 2-1 2.4M17 4.7l2.3 1.2V2.5l-2.3.7-.2-.2.9-3h-3.4l.9 3-.2.2c-.1.1-2.3-.7-2.3-.7v3.4L15 4.7c.1.1.1.2.2.2l-1.3 4c-.1.2-.1.4-.1.6 0 1.1.8 2 1.9 2.2h.7c1-.2 1.9-1.1 1.9-2.1 0-.2 0-.4-.1-.6l-1.3-4c-.1-.2 0-.2.1-.3m-7.6 5.7c.9.4 2-.1 2.4-1 .4-.9-.1-2-1-2.4-.9-.4-2 .1-2.4 1s0 2 1 2.4m-5 3c.9.4 2-.1 2.4-1 .4-.9-.1-2-1-2.4-.9-.4-2 .1-2.4 1s.1 2 1 2.4m-3.2 4.8c.9.4 2-.1 2.4-1 .4-.9-.1-2-1-2.4-.9-.4-2 .1-2.4 1s0 2 1 2.4m14.8 11c4.4 0 8.6.3 12.3.8 1.1-4.5 2.4-7 3.7-8.8l-2.5-.9c.2 1.3.3 1.9 0 2.7-.4-.4-.8-1.1-1.1-2.3l-1.2 4c.7-.5 1.3-.8 2-.9-1.1 2.5-2.6 3.1-3.5 3-1.1-.2-1.7-1.2-1.5-2.1.3-1.2 1.5-1.5 2.1-.1 1.1-2.3-.8-3-2-2.3 1.9-1.9 2.1-3.5.6-5.6-2.1 1.6-2.1 3.2-1.2 5.5-1.2-1.4-3.2-.6-2.5 1.6.9-1.4 2.1-.5 1.9.8-.2 1.1-1.7 2.1-3.5 1.9-2.7-.2-2.9-2.1-2.9-3.6.7-.1 1.9.5 2.9 1.9l.4-4.3c-1.1 1.1-2.1 1.4-3.2 1.4.4-1.2 2.1-3 2.1-3h-5.4s1.7 1.9 2.1 3c-1.1 0-2.1-.2-3.2-1.4l.4 4.3c1-1.4 2.2-2 2.9-1.9-.1 1.5-.2 3.4-2.9 3.6-1.9.2-3.4-.8-3.5-1.9-.2-1.3 1-2.2 1.9-.8.7-2.3-1.2-3-2.5-1.6.9-2.2.9-3.9-1.2-5.5-1.5 2-1.3 3.7.6 5.6-1.2-.7-3.1 0-2 2.3.6-1.4 1.8-1.1 2.1.1.2.9-.3 1.9-1.5 2.1-.9.2-2.4-.5-3.5-3 .6 0 1.2.3 2 .9l-1.2-4c-.3 1.1-.7 1.9-1.1 2.3-.3-.8-.2-1.4 0-2.7l-2.9.9C1.3 23 2.6 25.5 3.7 30c3.7-.5 7.9-.8 12.3-.8" fill="currentColor" fill-rule="evenodd"></path>
+            </svg>
+            <span class="govuk-header__logotype-text">GOV.UK</span>
+          </span>
+        </a>
       </div>
+    </div>
+  </div>
+</header>
 
-      <div class="govuk-grid-column-one-third">
-        <h2>Departments and policy</h2>
+<div class="">
+  <div class="gem-c-layout-for-public__blue-bar govuk-width-container"></div>
+</div>
 
-        <ul>
-          <li>
-            <a class="govuk-link" href="#">
-              How government works
-            </a>
+<div class="govuk-width-container">
+  {% include 'test-banner.html' %}
+</div>
+
+<div id="wrapper" class="transaction service govuk-width-container">
+
+  <div class="gem-c-contextual-breadcrumbs">
+    <div class="gem-c-breadcrumbs govuk-breadcrumbs govuk-breadcrumbs--collapse-on-mobile">
+      <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="#">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="#">Crime, justice and the law</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+          <a class="govuk-breadcrumbs__link" href="#">Prisons and probation</a>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <main id="content" role="main" class="guide govuk-main-wrapper">
+    {% block content %}{% endblock %}
+  </main>
+
+</div>
+
+<footer class="gem-c-layout-footer govuk-footer gem-c-layout-footer--border" role="contentinfo">
+  <div class="govuk-width-container">
+    <div class="govuk-footer__navigation">
+      <div class="govuk-grid-column-two-thirds govuk-!-display-none-print">
+        <h2 class="govuk-footer__heading govuk-heading-m">Services and information</h2>
+        <ul class="govuk-footer__list govuk-footer__list--columns-2">
+          <li class="govuk-footer__list-item">
+            <a class="govuk-footer__link" href="#">Benefits</a>
           </li>
-          <li>
-            <a class="govuk-link" href="#">
-              Departments
-            </a>
+          <li class="govuk-footer__list-item">
+            <a class="govuk-footer__link" href="#">Births, death, marriages and care</a>
           </li>
-          <li>
-            <a class="govuk-link" href="#">
-              Worldwide
-            </a>
+          <li class="govuk-footer__list-item">
+            <a class="govuk-footer__link" href="#">Business and self-employed</a>
           </li>
-          <li>
-            <a class="govuk-link" href="#">
-              Services
-            </a>
+          <li class="govuk-footer__list-item">
+            <a class="govuk-footer__link" href="#">Childcare and parenting</a>
           </li>
-          <li>
-            <a class="govuk-link" href="#">
-              Guidance and regulation
-            </a>
+          <li class="govuk-footer__list-item">
+            <a class="govuk-footer__link" href="#">Citizenship and living in the UK</a>
           </li>
-          <li>
-            <a class="govuk-link" href="#">
-              News and communications
-            </a>
+          <li class="govuk-footer__list-item">
+            <a class="govuk-footer__link" href="#">Crime, justice and the law</a>
           </li>
-          <li>
-            <a class="govuk-link" href="#">
-              Research and statistics
-            </a>
+          <li class="govuk-footer__list-item">
+            <a class="govuk-footer__link" href="#">Disabled people</a>
           </li>
-          <li>
-            <a class="govuk-link" href="#">
-              Policy papers and consultations
-            </a>
+          <li class="govuk-footer__list-item">
+            <a class="govuk-footer__link" href="#">Driving and transport</a>
           </li>
-          <li>
-            <a class="govuk-link" href="#">
-              Transparency and freedom of information releases
-            </a>
+          <li class="govuk-footer__list-item">
+            <a class="govuk-footer__link" href="#">Education and learning</a>
+          </li>
+          <li class="govuk-footer__list-item">
+            <a class="govuk-footer__link" href="#">Employing people</a>
+          </li>
+          <li class="govuk-footer__list-item">
+            <a class="govuk-footer__link" href="#">Environment and countryside</a>
+          </li>
+          <li class="govuk-footer__list-item">
+            <a class="govuk-footer__link" href="#">Housing and local services</a>
+          </li>
+          <li class="govuk-footer__list-item">
+            <a class="govuk-footer__link" href="#">Money and tax</a>
+          </li>
+          <li class="govuk-footer__list-item">
+            <a class="govuk-footer__link" href="#">Passports, travel and living abroad</a>
+          </li>
+          <li class="govuk-footer__list-item">
+            <a class="govuk-footer__link" href="#">Visas and immigration</a>
+          </li>
+          <li class="govuk-footer__list-item">
+            <a class="govuk-footer__link" href="#">Working, jobs and pensions</a>
           </li>
         </ul>
       </div>
-      <hr>
+      <div class="govuk-grid-column-one-third govuk-!-display-none-print">
+        <h2 class="govuk-footer__heading govuk-heading-m">Government activity</h2>
+        <ul class="govuk-footer__list govuk-footer__list--columns-1">
+          <li class="govuk-footer__list-item">
+            <a class="govuk-footer__link" href="#">Departments</a>
+          </li>
+          <li class="govuk-footer__list-item">
+            <a class="govuk-footer__link" href="#">News</a>
+          </li>
+          <li class="govuk-footer__list-item">
+            <a class="govuk-footer__link" href="#">Guidance and regulation</a>
+          </li>
+          <li class="govuk-footer__list-item">
+            <a class="govuk-footer__link" href="#">Research and statistics</a>
+          </li>
+          <li class="govuk-footer__list-item">
+            <a class="govuk-footer__link" href="#">Policy papers and consultations</a>
+          </li>
+          <li class="govuk-footer__list-item">
+            <a class="govuk-footer__link" href="#">Transparency</a>
+          </li>
+          <li class="govuk-footer__list-item">
+            <a class="govuk-footer__link" href="#">How government works</a>
+          </li>
+          <li class="govuk-footer__list-item">
+            <a class="govuk-footer__link" href="#">Get involved</a>
+          </li>
+        </ul>
+      </div>
     </div>
 
-
-          <div class="footer-meta">
-            <div class="footer-meta-inner">
-                <h2 class="visuallyhidden">Support links</h2>
-<ul>
-  <li><a class="govuk-link" href="#">Help</a></li>
-  <li><a class="govuk-link" href="#">Privacy</a></li>
-  <li><a class="govuk-link" href="#">Cookies</a></li>
-  <li><a class="govuk-link" href="#">Contact</a></li>
-  <li><a class="govuk-link" href="#">Accessibility statement</a></li>
-  <li><a class="govuk-link" href="#">Terms and conditions</a></li>
-  <li><a class="govuk-link" href="#" lang="cy" hreflang="cy">Rhestr o Wasanaethau Cymraeg</a></li>
-  <li>
-    Built by the
-    <a href="#" class="govuk-link">
-      Government Digital Service
-    </a>
-  </li>
-</ul>
-
-
-
-              <div class="open-government-licence">
-                <p class="logo">
-                  <a href="#" rel="license" class="govuk-link open-government-licence__logo-link">
-                    Open Government Licence
-                  </a>
-                </p>
-                  <p>All content is available under the <a href="#" rel="license" class="govuk-link">Open Government Licence v3.0</a>, except where otherwise stated</p>
-              </div>
-            </div>
-
-            <div class="copyright">
-              <a class="govuk-link" href="#">
-                 © Crown copyright
-              </a>
-            </div>
-          </div>
-        </div>
+    <hr class="govuk-footer__section-break">
+    <div class="govuk-footer__meta">
+      <div class="govuk-footer__meta-item govuk-footer__meta-item--grow">
+        <h2 class="govuk-visually-hidden">Support links</h2>
+        <ul class="govuk-footer__inline-list govuk-!-display-none-print">
+          <li class="govuk-footer__inline-list-item">
+            <a class="govuk-footer__link" href="#">Help</a>
+          </li>
+          <li class="govuk-footer__inline-list-item">
+            <a class="govuk-footer__link" href="#">Privacy</a>
+          </li>
+          <li class="govuk-footer__inline-list-item">
+            <a class="govuk-footer__link" href="#">Cookies</a>
+          </li>
+          <li class="govuk-footer__inline-list-item">
+            <a class="govuk-footer__link" href="#">Accessibility statement</a>
+          </li>
+          <li class="govuk-footer__inline-list-item">
+            <a class="govuk-footer__link" href="#">Contact</a>
+          </li>
+          <li class="govuk-footer__inline-list-item">
+            <a class="govuk-footer__link" href="#">Terms and conditions</a>
+          </li>
+          <li class="govuk-footer__inline-list-item">
+            <a class="govuk-footer__link" lang="cy" href="#">Rhestr o Wasanaethau Cymraeg</a>
+          </li>
+          <li class="govuk-footer__inline-list-item">
+            <a class="govuk-footer__link" href="#">Government Digital
+              Service</a>
+          </li>
+        </ul>
+        <svg aria-hidden="true" focusable="false" class="govuk-footer__licence-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 483.2 195.7" height="17" width="41">
+          <path fill="currentColor" d="M421.5 142.8V.1l-50.7 32.3v161.1h112.4v-50.7zm-122.3-9.6A47.12 47.12 0 0 1 221 97.8c0-26 21.1-47.1 47.1-47.1 16.7 0 31.4 8.7 39.7 21.8l42.7-27.2A97.63 97.63 0 0 0 268.1 0c-36.5 0-68.3 20.1-85.1 49.7A98 98 0 0 0 97.8 0C43.9 0 0 43.9 0 97.8s43.9 97.8 97.8 97.8c36.5 0 68.3-20.1 85.1-49.7a97.76 97.76 0 0 0 149.6 25.4l19.4 22.2h3v-87.8h-80l24.3 27.5zM97.8 145c-26 0-47.1-21.1-47.1-47.1s21.1-47.1 47.1-47.1 47.2 21 47.2 47S123.8 145 97.8 145"></path>
+        </svg>
+        <span class="govuk-footer__licence-description">
+          All content is available under the <a class="govuk-footer__link" href="#" rel="license">Open Government Licence v3.0</a>, except where otherwise stated
+        </span>
       </div>
-    </footer>
+      <div class="govuk-footer__meta-item">
+        <a class="govuk-footer__link govuk-footer__copyright-logo" href="#">© Crown copyright</a>
+      </div>
+    </div>
+  </div>
+</footer>
 </body>
 </html>
