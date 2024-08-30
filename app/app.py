@@ -1,12 +1,12 @@
 from flask import Flask, Response, redirect, render_template, request
 from prometheus_client import exposition
 from prometheus_client.metrics_core import InfoMetricFamily
-from prometheus_client.registry import CollectorRegistry
+from prometheus_client.registry import Collector, CollectorRegistry
 
 import settings
 
 
-class AppMetricCollector:
+class AppMetricCollector(Collector):
     def __init__(self):
         self.info = InfoMetricFamily('mtp_app', 'Details of a money-to-prisoners app', value=dict(
             app=settings.APP,
