@@ -6,4 +6,4 @@ flake8-debugger~=4.1
 # flake8-logging~=1.6
 flake8-quotes~=3.4
 pep8-naming~=0.15.1
-pytest~=8.3
+pytest~=8.4
