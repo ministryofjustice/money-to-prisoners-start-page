@@ -1,4 +1,4 @@
-FROM python:3.12-alpine
+FROM python:3.14-alpine
 
 RUN set -ex; \
   apk add --no-cache --no-progress tzdata \
