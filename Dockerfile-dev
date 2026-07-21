@@ -9,9 +9,15 @@ USER root
 
 # Having a text editor in a dev container is super useful
 # Also sudo is needed to install anything further as mtp user
+#
+# Deliberately best-effort: Docker Desktop's DNS frequently cannot resolve
+# dl-cdn.alpinelinux.org (other hosts on the same container resolve fine), and these are a
+# convenience rather than something the app needs. Failing hard here took down the whole of
+# `docker-compose up`, because compose builds every service before starting any of them.
 RUN apk add \
   vim \
-  sudo
+  sudo \
+  || echo 'WARNING: could not install vim/sudo; continuing without them'
 
 COPY --chown=mtp:mtp . /app/
 
