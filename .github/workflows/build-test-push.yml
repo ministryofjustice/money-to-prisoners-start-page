@@ -2,6 +2,12 @@
 # templates-apps generator (the generator skips build-test-push.yml for it).
 # Unlike the Django apps, start-page runs its tests on the host (flake8 +
 # pytest) and builds a self-contained image (python:3.14-alpine, no base-web).
+#
+# Images are multi-arch: each platform is built on a native runner and pushed to
+# `[branch].[sha]-[platform]`, then merged into one index tagged `[branch].[sha]`.
+# The tests are a separate job rather than part of the build matrix, because they
+# run against the host checkout and not the image — running them per platform
+# would just be the same suite twice.
 name: Build, test and push
 on:
   push:
@@ -9,14 +15,12 @@ permissions:
   contents: read
   packages: write
 jobs:
-  build-test-push:
-    name: Build, test and push
+  test:
+    name: Lint and test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
-
-      # --- test on the host (Flask app; not containerised for tests) ---
       - name: Setup python
         uses: actions/setup-python@v6
         with:
@@ -37,7 +41,22 @@ jobs:
           path: reports
           if-no-files-found: warn
 
-      # --- build + push image ---
+  build:
+    name: Build image (${{ matrix.platform }})
+    needs: test
+    runs-on: ${{ matrix.runner }}
+    strategy:
+      # one platform failing should not hide whether the other builds
+      fail-fast: false
+      matrix:
+        include:
+          - platform: amd64
+            runner: ubuntu-latest
+          - platform: arm64
+            runner: ubuntu-24.04-arm
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
       - name: Log docker into GHCR
         uses: docker/login-action@v3
         with:
@@ -54,7 +73,7 @@ jobs:
           echo "version=${version}" >> "$GITHUB_OUTPUT"
           echo "tag=${tag}" >> "$GITHUB_OUTPUT"
           echo "ghcr_package=${ghcr_package}" >> "$GITHUB_OUTPUT"
-          echo "Building ${tag}"
+          echo "Building ${tag} for linux/${{ matrix.platform }}"
       - name: Build docker image
         env:
           TAG: ${{ steps.tags.outputs.tag }}
@@ -67,22 +86,56 @@ jobs:
             --build-arg APP_BUILD_DATE=$(date +%FT%T%z) \
             --tag ${TAG} \
             .
+      # pushes to `[branch].[sha]-[platform]`; the plain tag is only moved once both
+      # platforms are in, by the merge job
       - name: Push docker image
         env:
           TAG: ${{ steps.tags.outputs.tag }}
           VERSION: ${{ steps.tags.outputs.version }}
+          PLATFORM: ${{ matrix.platform }}
           GHCR_PACKAGE: ${{ steps.tags.outputs.ghcr_package }}
         run: |
-          echo "Pushing ${VERSION} to GHCR ${GHCR_PACKAGE}"
-          docker tag ${TAG} ${GHCR_PACKAGE}:${VERSION}
-          docker push ${GHCR_PACKAGE}:${VERSION}
+          echo "Pushing ${VERSION}-${PLATFORM} to GHCR ${GHCR_PACKAGE}"
+          docker tag ${TAG} ${GHCR_PACKAGE}:${VERSION}-${PLATFORM}
+          docker push ${GHCR_PACKAGE}:${VERSION}-${PLATFORM}
+
+  merge-and-deploy:
+    name: Merge platforms and deploy to test
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log docker into GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Compute image tags
+        id: tags
+        run: |
+          branch_lc=$(echo "${GITHUB_REF_NAME}" | tr '[:upper:]' '[:lower:]')
+          version=${branch_lc}.${GITHUB_SHA::7}
+          ghcr_package=ghcr.io/${{ github.repository_owner }}/money-to-prisoners-start-page
+          echo "version=${version}" >> "$GITHUB_OUTPUT"
+          echo "ghcr_package=${ghcr_package}" >> "$GITHUB_OUTPUT"
+      - name: Merge into a multi-arch manifest
+        env:
+          VERSION: ${{ steps.tags.outputs.version }}
+          GHCR_PACKAGE: ${{ steps.tags.outputs.ghcr_package }}
+        run: |
+          echo "Merging ${VERSION} from amd64 and arm64"
+          docker buildx imagetools create \
+            --tag ${GHCR_PACKAGE}:${VERSION} \
+            ${GHCR_PACKAGE}:${VERSION}-amd64 \
+            ${GHCR_PACKAGE}:${VERSION}-arm64
           if [[ "${GITHUB_REF_NAME}" == "main" ]]; then
-            echo "Pushing latest to GHCR"
-            docker tag ${TAG} ${GHCR_PACKAGE}:latest
-            docker push ${GHCR_PACKAGE}:latest
+            echo "Pointing latest at ${VERSION}"
+            docker buildx imagetools create \
+              --tag ${GHCR_PACKAGE}:latest \
+              ${GHCR_PACKAGE}:${VERSION}
           fi
 
-      # --- deploy to test on main (gated; dormant during dual-run) ---
+      # --- deploy to test on main (gated) ---
       - name: Install kubectl
         if: ${{ github.ref_name == 'main' && vars.GHA_DEPLOY_ENABLED == 'true' }}
         uses: azure/setup-kubectl@v4
@@ -91,7 +144,6 @@ jobs:
       - name: Deploy to test
         if: ${{ github.ref_name == 'main' && vars.GHA_DEPLOY_ENABLED == 'true' }}
         env:
-          TAG: ${{ steps.tags.outputs.tag }}
           VERSION: ${{ steps.tags.outputs.version }}
           GHCR_PACKAGE: ${{ steps.tags.outputs.ghcr_package }}
           K8S_CLUSTER_CERT: ${{ secrets.K8S_CLUSTER_CERT }}
