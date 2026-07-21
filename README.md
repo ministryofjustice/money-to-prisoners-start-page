@@ -3,6 +3,9 @@ Prisoner Money – Start page
 
 This repository contains the user research content for the ‘Send money to a prisoner’ service.
 
+How this app fits into the wider service — architecture, data flows, deployment and
+support — is documented in [money-to-prisoners-deploy](https://github.com/ministryofjustice/money-to-prisoners-deploy/blob/main/docs/README.md).
+
 The live content can be found at [gov.uk/send-prisoner-money](https://www.gov.uk/send-prisoner-money)
 
 In production, this app is used to redirect legacy domains/paths.
@@ -17,7 +20,7 @@ Unlike most Prisoner Money apps, this one does not use the REST api and is built
 Development
 -----------
 
-[![CircleCI](https://circleci.com/gh/ministryofjustice/money-to-prisoners-start-page.svg?style=svg)](https://circleci.com/gh/ministryofjustice/money-to-prisoners-start-page)
+[![Build, test and push](https://github.com/ministryofjustice/money-to-prisoners-start-page/actions/workflows/build-test-push.yml/badge.svg)](https://github.com/ministryofjustice/money-to-prisoners-start-page/actions/workflows/build-test-push.yml)
 
 ### Run locally
 
