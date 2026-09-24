@@ -19,7 +19,14 @@ RUN apk add \
   sudo \
   || echo 'WARNING: could not install vim/sudo; continuing without them'
 
-COPY --chown=mtp:mtp . /app/
+# Only app/ goes into /app, as in the production Dockerfile: copying the whole repository put the
+# source at /app/app/app.py, so Flask kept serving the published image's code
+COPY --chown=mtp:mtp app /app/
 
 # Revert back to settings under which the app should run
 USER mtp
+
+# Reload when the code changes; docker-compose in money-to-prisoners-common mounts app/ over /app.
+# These are appended to the image's `flask run` entrypoint. Not FLASK_DEBUG, which would also
+# turn on the interactive debugger on a port that compose publishes to the network.
+CMD ["--reload", "--no-debugger"]
