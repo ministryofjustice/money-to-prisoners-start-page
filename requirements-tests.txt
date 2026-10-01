@@ -1,4 +1,4 @@
-flake8~=7.3
+flake8~=7.4
 flake8-blind-except~=0.2.1
 flake8-bugbear~=25.11
 # flake8-commas~=4.0
